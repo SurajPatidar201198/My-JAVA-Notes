@@ -1,0 +1,117 @@
+======================================================================
+Literals
+====================================================================
+
+A constant value which can be assigned to the variable is known as literal.
+Example:
+int x = 10;
+x = Name of variable/identifier
+int = data type / keyword
+10 = constant value / literal
+
+------------------------------------------------------
+Integral Literals
+--------------------------------------------------
+For integral data types(byte,short,int,long) we can specify literal values in following ways:
+
+1) decimal form (base 10): allowed digits are 0 to 9.
+    Example : int x = 10;
+
+2) octal form (base 8): allowed digits are 0 to 7.Literal values should be prefixed with 0.
+    Example : int x = 010;
+
+3) hexadecimal form (base 16) : allowed digits are 0 to 9 and a to f.
+    for extra digits(a to f) we can use both lower case and upper case letters.
+    The literal value should be prefixed with 0X or 0x.
+    Example : int x = 0X10;
+
+This are only possible ways to specify literal for integral data types.
+
+Examples:
+
+int x = 10;  //valid
+int x = 0786;  //invalid ce: integer Value too large, we can only use number in range 0 to 7 in octadeciamal
+int x = 0777;   //valid
+int x = 0XFace;     //valid
+int x = 0XBeef;      //valid
+int x = 0XBeer;     //invalid becuse 'r' is outof range allowed range is a to f only
+
+By default every integral literal is of int type if we want to convert them from int to long then
+we have to add suffix L or l.
+Example: long l1 = 23l;
+         long l2 = 3L;
+         int x = 10l  //invalid
+         long l = 0X20L;
+
+
+There is no direct way to specify byte and short literals explicitly but indirectly we can specify
+whenever we are assigning integral literals to the byte variable and if the value lies within range of byte then
+compiler treats it automatically as byte literals. llly short literal also.
+Example: 
+byte b = 10;
+byte b = 127;
+byte b = 128 ;  //invalid P L P found int required byte
+
+short s = 32767;
+short s = 32768;  //invalid P L P found int required short
+
+---------------------------------------------------------
+Floating Point Literals
+---------------------------------------------------------
+
+By default every floating point literal is of double type and hence we can't assign direcly to the float variable.
+But we can specify floating point literal as float type by suffixed with f or F.
+float f = 123.456;   // ce: Possible Loss of Precision found double required float
+float f = 123.456F;  //valid
+double d = 123.456;
+
+We can specify explicitly floating point literal as double type by suffixed with d or D.
+Offcourse this convention is not required.
+
+double d = 123.456D;  //valid
+float f = 123.456d;  //P S P found double required float.
+
+We can specify floating point literals only in decimal form and we can't specify in octal and hexadecimal forms.
+
+double d = 123.456;
+double d = 0123.456;    //It is decimal literal and it don't be treated as octal literal
+double d = 0X123.456;   //ce: malformed floating point literals
+
+double d = 0786;   //ce: integer number is too large
+double d = 0XFace;   //valid
+
+double d = 0786.0  //valid
+double d = 0XFace.0    //invalid
+
+double d = 10;
+Sopen(d)    //10.0
+
+We can assign integral literals direcly to floting point variables and that integral laterals can be specified either in decimal,
+octal,or hexadecimal form.
+
+We can't assign floating point number to integral type.
+example: 
+double d = 10;
+int x = 10.0 ;  //invalid  ce: P L P found double required int
+
+We can specify floating point number even in exponential form(e).
+
+Example:
+double d = 1.2e;  //valid
+float f = 1.2e3;  //invalid  P L P found double requries flaot
+float f = 1.2e3f;  //valid
+
+----------------------------------------------------------
+Boolean Literals
+----------------------------------------------------------
+The only allowed value for boolean data type are true or false.
+
+Example:
+boolean b = 0;   // incompitable type found int required boolean
+boolean b = True;   //cannot find symbol variable True 
+boolean b = "true";  //incompitable type found String required boolean
+
+
+--------------------------------------------------------------
+char literals
+--------------------------------------------------------------
