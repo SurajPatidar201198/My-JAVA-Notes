@@ -83,3 +83,82 @@ int x = 2147483647
 int x = 2147483648 //invalid ce: integer number too large
 int x = 2147483648l //invalid ce: possible loss of precision found long required int
 int x = true  // ce: incompatible type found boolean required int
+
+-----------------------------------------------------------------
+long
+-----------------------------------------------------------------
+
+Sometime int may not enough to hold big values then we should go for long type.
+Example
+The amount of distance travelled by light in 1000 days, to hold this value int may not enough
+we should go for long data type.
+
+long l = 1,26000 * 60 *60 * 24 * 1000 miles
+
+The number of character present in the big big file may exceed int range hence the 
+return type of length() method is long but not int.
+long l = f.lenghth();
+
+Size : 8bits(64bits)
+range: -2^63 to 2^63-1
+
+Note: All the above data types(byte,short,int,long) meant for representing integral value if we want to represent floating point values then 
+we should go for floating point datatypes.
+
+-------------------------------------------------------------
+floating point data types
+-------------------------------------------------------------
+
+refer : Floating point data types.programming
+
+-----------------------------------------------------------
+boolean data type
+-----------------------------------------------------------
+
+Size : Not Applicable[virtual machine dependent]
+range : Not Applicable[but allowed values are true/false]
+
+boolean b = true;
+boolean b = 0;   //invalid ce: incompatible type found int required boolean
+
+boolean b = True;  //invalid  ce: cannot find symbol variable
+
+boolean b = "True";  //invalid  incompatible type found string required boolean
+
+int x=0;
+if(x)   //error in if, inside () it always required boolean value but given int this code is valid in c++
+{
+    Sopen("Hello");
+}
+else
+{
+    Sopen("Hii");
+}
+//above code will give ce : incompatible type found int required boolean
+
+while(1)    //error in while, inside () it always required boolean value but given int this code is valid in c++ 
+{
+    Sopen("hello");
+}
+// ce: in above while loop
+
+--------------------------------------------------------------------------
+char
+--------------------------------------------------------------------------
+Size: 
+
+Old languages(like c++) are ascii code based and the number of different allowed ascii code characters are <= 256
+to repesent this 256 characters 8 bits are enough hence the size of char in old languages is 1 byte.
+But java is unicode based and the number of unicodes are greater than 256 and less than 65536 to represent this
+characters 8 bits is not enought compulsory we should have to go for 16bits. Hence the 
+size of char in java is 2bytes.
+
+Size : 2bytes
+range : 0 to 65535
+
+
+================================================================
+Summary of JAVA primitive data types
+=================================================================
+
+
