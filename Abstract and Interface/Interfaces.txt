@@ -1,0 +1,778 @@
+Most important for Interviews
+===============================
+
+/******************Interfaces*****************************/ 
+
+Agenda
+=============================
+
+1)Introduction
+2)Interfaces declaration and Implementation
+3)extends Vs Implementation
+4)Interfaces methods
+5)Interfaces variables
+6)Interfaces naming conflicts
+    (i)method naming conflicts
+    (ii)variables naming conflicts
+7)Marker Interfaces            <-------------Most Important
+8)Adapter classes
+9)Interface Vs Abstract Class vs Concrete Class
+10)Difference between Interfaces and Abstract class
+11)Conclusion
+
+===================================================================
+Introduction:
+===================================================================
+
+Defination 1:
+Any Service Requirement Specification(SRS) is bydefault is considered as Interface.
+Example 1: JDBC API access Requirement Specification to develop database driver,
+database wender is responsible to implememnt JDBC API.    
+Example 2:Servlet API access Requirement Specification to develop web server,
+web server vendor is responsible to implememnt servlet API.
+
+Defination 2:
+From client point of view an interface defines the set of servies what he is expecting,
+from service provider point of view an interface is defined as the set of services
+what he is offering hence any contract between client and service provider is considered as 
+an interface.
+Example:Through bank atm GUI screeen bank people are highlighting the set of services
+that what they are offering at the same time the GUI screen represents the set of 
+services what customer is expecting hence this GUI screen access contract between
+customer and bank people.
+
+Defination 3:
+Inside interface every method is always abstract whether we are declaring or not hence
+interface is considered as 100% pure abstract class.
+
+Summary Defination:
+Any service Requirement Specification or any contract between client and service 
+provider or 100% pure abstract class is nothing but interface.
+
+==============================================================================
+Interfaces declaration and Implementation
+==============================================================================
+
+interface Interf
+{
+    void m1();
+    void m2();
+}
+class ServiceProvider implements Interf
+{
+    void m1()
+    {
+
+    }
+}
+
+//above code will give error 2 errors are there first ServiceProvider class is not implementing all methods of interf and also not declared as abstract, second
+in void m1() in ServiceProvider access specifier should be public as m1 was  it was public in Interf.
+
+(i)Whenever we are implmenting an interface for each and every method of that interface
+we have to provide implementation otherwise we have to declare class as abstract then
+next level child class is responsible to provide implementation.
+
+(ii)Every interface method is always public and abstract whether we are declaring or not
+hence Whenever we are implementing an interface method compulsory we should have to 
+declare as public otherwise we will get compile time error.
+
+//correct code of above code:
+interface Interf
+{
+    void m1();
+    void m2();
+}
+abstract class ServiceProvider implements Interf
+{
+    public void m1()
+    {
+
+    }
+}
+class SubServiceProvider extends ServiceProvider
+{
+    public void m2();
+}
+
+//above code is perfectly fine 
+
+============================================================================================
+Extends Vs Implements
+===========================================================================================
+1)A class can extend only one class at a time
+2)A interface can extends any number of interface simoltaneously.
+example:
+    interface A                                 interface B
+    {                                           {
+
+    }                                            }
+
+    interface C extends A,B 
+    {
+
+    }
+
+3)A class can implements any number of interface simoltaneously.
+4)A class can extend another class and can implement any number of interfaces simoltaneously
+example:
+    class A extends B implements C,D,E 
+    {
+
+    }
+
+Which of the following is valid?
+1)A class can extend any number of classes at a time.   //invalid
+2)A class can implements only 1 interface at a time.   //invalid
+3)A interface can extend only one interface at a time.  //invalid
+4)An interface can implement any number of interface simoltaneously.  //invalid becuse interface cant implement
+5)A class can extend another class or can implement an interface but not both simoltaneously  //invalid
+6)None of the above.
+
+
+Ans :6
+
+Consider the following expression:  X extends Y
+for which of the following possibilities of X and Y the above expression is valid
+
+1)Both X and Y should be classes
+2)Both X and Y should be interface
+3)Both X and Y can be either  classes or interface.
+4)None of the above
+
+Ans: 3
+
+Consider the following expression:  X extends Y,Z
+    X,Y,Z should be interface
+
+Consider the following expression:  X implements Y,Z
+    X->class  Y,Z-->interface
+
+Consider the following expression:  X extends Y implememnts Z
+    X,Y-->class
+    z-->interface
+
+X implememnt Y extends z
+    ce:compile time error: we have to take extends first and then implements
+
+
+============================================================================
+Interfaces methods
+============================================================================
+
+Every method present inside interface is always public and abstract whether we are declarinng or not.
+
+interface interf
+{
+    void m1();
+}
+
+why m1 is public and abstract?
+public:To make this method available ti every implementation class outside the package.
+abstract:Implementation class is responsible to provide the implementation.
+
+Hence inside interface the following method declaration are equal:
+1)void m1();
+2)public void m1();
+3)abstract void m1();
+4)public abstract void m1();
+
+//above all methods are valid
+ 
+
+As every interface method is always public and abstract we cant declare interface methodd
+with the following modifiers 
+1)private
+2)protected
+3)static
+4)final
+5)synchronized
+6)strictfp
+7)native
+
+Which of the following method declaration are allowed inside interface?
+public void m1(){}  //invalid
+private void m1(); //invalid
+protected void m1();   //invalid
+static void m1()       //invalid
+public abstract native void m1();   //invalid
+abstract public void m1();  //valid
+
+
+========================================================================
+Interface variables
+========================================================================
+
+An interface can contain variables, the main purpose of interface variables is to 
+define Requirement level constraints.
+
+Every interface variable is always public static final whether we are declaring or not.
+
+interface interf
+{
+    int x=10;
+}
+
+why x is always public static final?
+ans:
+public:To make this variables available to every implementation class
+static:without creating or existing object also implementation class can access this variable
+final:If one implementation class changes value then remaining implementation class
+will be affected.TO restrict this every interface variable is always final.
+
+Hence within the interface the following variable declaration are equal:
+1)int x=10;         //valid
+2)public int x=10;  //valid
+3)static int x=10;  //valid
+4)final int x=10;  //valid
+5)public static int x=10;  //valid
+6)public final int x=10;  //valid
+7)static final int x=10;  //valid
+8)public static final int x=10;  //valid
+
+As every interface variable is always public static final we cant declare with the
+following modifiers:
+1)private
+2)protected
+3)transient
+4)volatile
+
+
+For interface variable compulsory we should perform initialization at the time
+of declaration otherwise we will get compile time error.
+Example:
+interface Interf
+{
+    int x;
+}
+
+ce: = symbol expected
+
+Inside interface which of the following  declaration are allowed.
+interface Interf
+{
+    1)int x;     //invalid
+    2)private int x=10;     //invalid
+    3)protected int x=10;     //invalid
+    4)volatile int x=10;     //invalid
+    5)transient int x=10;     //invalid
+    6)public static int x=10;   //valid
+}
+
+Inside implementation class we can access interface variables but we cant modify values.
+Example:
+interface Interf
+{
+    int x=10;
+}
+class Test implements Interf
+{
+    p s v main(String [] args)
+    {
+        x=777;
+        Sopen(x);
+    }
+}
+//this will give error as we are trying to change the value of x that is in interface
+
+class Test2 implements Interf
+{
+    p s v main(String [] args)
+    {
+        int x=777;
+        Sopen(x);
+    }
+}
+//this will not give error as we are declaring local varible x.
+
+============================================================================
+Interface naming conflicts
+============================================================================
+
+1)Method Naming conflicts 
+
+Case1:If two interface contains a method with same signature and the same return type, then
+in the implementation class we have to provide implementation for only one method.
+Example:
+interface left
+{
+    public void m1();
+}
+interface right
+{
+    public void m1();
+}
+class Test implememnts left,right
+{
+    public void m1()
+    {
+
+    }
+}
+
+Case2: If two interfaces contain a method with the same name but different argument 
+types then in the implementation class we have to provide implementation for both methods
+and this methods access overloaded methods.
+
+
+Example:
+interface left
+{
+    public void m1();
+}
+interface right
+{
+    public void m1(int i);
+}
+class Test implememnts left,right
+{
+    public void m1()
+    {
+
+    }
+    public void m1(int i)
+    {
+
+    }
+}
+//in Test class m1 is overloaded method
+
+
+Case 3: If two interface contains a method with same signature but with different
+return type then it impossible to implememnt both interfaces simoltaneously.(if returntype
+are not covarient).
+
+interface left{
+    public void m1();
+}
+interface right
+{
+    public int m1();
+}
+class Test implememnts left,right
+{
+    public void m1()
+    {
+
+    }
+    public int m1()
+    {
+
+    }
+}
+//this will give error.
+
+We can't write any java class which implements both interfaces simoltaneously.
+
+Is a java class can implement any number of interfaces simoltaneously?
+Ans: Yes except a partcular case that is if two interface contains a method with
+same signature but different return types, then it is immpossible to implement
+both interfaces simoltaneously.
+
+
+===============================================================================
+variables naming conflicts
+================================================================================
+
+Two interface can contain a variable with the same name and there may be a chance of 
+variable naming conflicts but we can solve this problem by using interface names.
+For example:
+interface left{
+    int x=555;
+}
+interface right
+{
+    int x=777;
+}
+class Test implememnts left,right
+{
+    p s void main(String [] args)
+    {
+        Sopen(X);     //ce: reference to x is ambigious
+        Sopen(left.x);   //Output:555
+        Sopen(right.x);  //Outout:777
+    }
+}
+//this thing is not applicable with methods
+
+==============================================================================
+marker interface
+==============================================================================
+
+If an interface doesn't contain any methods and by implementing that interface if
+out object will get some ability such type of interfaces are called marker interfaces or ability interface or tag interface.
+
+Example of marker interface:
+Example:
+1)Serializable
+2)Cloneable
+3)Random access
+4)Single Thread Model
+
+Example 1:By implementing Serializable interface our object can be saved to the filr and can 
+travel accross the network.
+
+Example 2:By implenting Cloneable interface out objects are in a position to produce exactly
+duplicate cloned objects.
+
+Without having any methods how the objects will get some ability in the marker inerfaces?
+Ans:
+Internally JVM is responsible to provide required ability.
+
+Why JVM is providing required ability in marker interfaces?
+Ans:
+To reduce the complexity of programming and to make JAVA language as simple.
+
+Is it possible to create our own marker interface?
+Ans: Yes but customization of JVM is requried, we have to create our own JVM in that case.
+
+=============================================================================
+Adapter classes
+=============================================================================
+ 
+Adapter class is simple java class that implememnts an interface with only empty
+implementations.
+
+interface X 
+{
+    m1();
+    m2();
+    m3();
+    m4();
+
+
+    m1000();
+}
+
+abstract class Adapter implement X 
+{
+    m1(){}
+    m2(){}
+    m3(){}
+    m4(){}
+
+
+    m1000(){}
+}
+
+If we implement an interface for each and every method of that interface compulsory
+we should provide implementation whether it is required or not required.
+
+class Test implements X 
+{
+    m3()
+    {
+        //10line code
+    }
+    m1(){
+    }
+    m2(){}
+
+
+
+    m1000(){}
+}
+
+The problem in this approach is it increases length of the code and reduces readibility.
+We can solve this problem  by using adaptor classes.
+
+Instead of implementing interface if we extends adaptor class we have to provide
+implementation only for required method and we are not responsible to provide implementation
+for each and every method of the interface therefore the length of the code is reduced.
+
+class Test extends AdapterX
+{
+    m3()
+    {
+        ---
+        --
+    }
+}
+class Sample extends AdapterX
+{
+    m7()
+    {
+        -------
+        ---
+    }
+}
+class Demo extends AdapterX
+{
+    m1000()
+    {
+        ------
+        ---
+        ----
+    }
+}
+
+We can develop a servelet in the following 3 ways:
+1)By implementing Servlet interface
+2)By extending Generic Servley
+3)By extending HttpServlet
+
+If we implement servelet interface for each and every method of that interface we should
+provide implementation it increases length of the and reduces readibility.
+
+Instead of implementing servlet interface directly if we extend Generic servelet
+we have to provide implementation for only service method and for all remaining methods
+we are not required to provide implementation. Hence more or less Generic servlet
+access adaptor class for servelet interface.
+
+Note:Marker interface and adaptor classes simplifies complexity of programming
+and this are best utilities to the programmer and the programmer life will become
+simple.
+
+================================================================================
+Interface Vs Abstract Class Vs Concrete Class
+=================================================================================
+
+1)If we dont know anything about implementation just we have Requirement Specification
+then we should go for interface.
+Example: servelet
+
+2)If we are talking about implementation but not completely(partial implementation)
+then we should go for abstract class.
+Example: Generic Servlet,HTTP Servlet
+
+3)If we are talking about implementation completely and ready to provide servicethen
+we should go for concrete class.
+Example : My own servelet
+
+Difference between interface and abstract class
+------------------------------------------------
+
+Refer: Diff_Interface_VS_Abstract_Class.png 
+
+------------------------------------------
+
+Q) What is the need of constructor inside abstract class?
+Ans:
+
+Approach 1 without having constructor in abstract class:
+
+abstract class Person
+{
+    String name;
+    int age;
+
+
+
+
+    ...100 properties
+}
+
+class Student extends Person
+{
+    int rollNo;
+    Student(String name,int age,.....101 properties)
+    {
+        this.name=name;
+        this.age=age
+
+
+        ....100 properties.
+        this.rollno=rollNo;
+    }
+}
+Student s1= new Student(101 properties)   //more code and code redundancy problem
+
+Approach 2: with constructor inside abstract class
+
+abstract class Person
+{
+    String name;
+    int age;
+
+
+
+
+    ...100 properties
+    Person(String name,int age....100 properties)    <--this constructor work for every child object initialization
+    {
+        this.name=name;
+        this.age=age;
+        ..
+        ....
+        ...
+        ......100 line;
+    }
+}
+class Student extends Person
+{
+    int rollNo;
+    Student(String name,int age,.....101 properties)
+    {
+        super(100 properties)    <--this will call parent class constructor and initiliaze the properties
+        this.rollNo=rollNo;
+    }
+}
+Student s1=new Student(101 properties)  //this code is recommended because of code less code and code reuseability
+
+
+
+Note: 
+ 
+1)Either directly or indirectly we cant create object for abstract class.
+
+2)Anyway we cant create object for abstract class and interface but abstract class can contain
+constructor but interface doesn't contain constructor.What is the reason?
+Ans:The main purpose of constructor is to perform initialization of instance variables.
+Abstract class can contain instance variables which are required for child objectto 
+perform initialization of those instance variables constructor is required for abstract class.
+But every variable present inside interface is always public static final whether we are 
+declaring or not and there is no chance of existing instance variable interface hence 
+constructor concept is not required for interface.
+
+3)Whenever we are creating child class object parent object won't be created just
+parent class constructor will be executed for the child object purpose only.
+
+
+4)Inside interface every method is always abstract and we can take only abstract methods 
+in abstract class also then what is the difference between interface and 
+abstract class i.e is it possible to replace interface with abstract class?
+Ans: We can replace interface with abstract class but it is not a good 
+programming practice this is something like recuriting IAS officer for 
+sweeping activity.
+
+
+5)If everything is abstract then it is highly recommended to go for interface.
+
+Now we will look that what are the disadvantages are there if we make use of abstract class if all the 
+methods are abstract and what are the adavantages if we make use of interface.
+
+Source: Abstract and Interface ending comparison.png
+
+
+
+================================================================
+1)
+
+Purpose of NEW and CONSTRUCTOR 
+-------------------------------
+
+The main objective of new operator is to create an object that main purpose of constructor is to 
+initiliaze object.
+First object will be created by using new operator and then initialization will be performed by constructor.
+
+Example:
+class Student
+{
+    String name;
+    int rollNo;
+    Student(String name,int RollNO)
+    {
+        this.name=name;
+        this.rollNo=RollNO;
+    }
+}
+
+Student s = new Student("Suraj",101);
+
+
+
+
+2)Whenever we are creating child class object what is the need of executing parent class
+constructor?
+
+Ans:
+
+Whenever we are creating child class object automatically parent constructor will be 
+executed to perform initialization for the instance variables which are inheiting from 
+parents.
+
+class Person{
+    String name;
+    int age
+    Person(String name,int age)
+    {
+        this.name=name;
+        this.age=age;
+    }
+}
+class Student extenda Person
+{
+    int rollno;
+    int marks;
+    Student(String name,int age,int rollno,int marks)
+    {
+        super(name,age);
+        this.rollNo=rollno;
+        this.marks=marks;
+    }
+}
+
+Student s = new Student("suraj",48,101,90);
+
+In the above program both both parent and child constructor are executed
+for child object initialization only.
+
+
+3)Whenever we are creating child class object what is the need of executing parent class constructor?
+
+Ans:
+Whenever we are creating child class object parent constructor will be executed but parent object
+wont be created.
+Example:
+class P 
+{
+    P()
+    {
+        Sopen(this.hashCode());  //100
+    }
+}
+class C extends P
+{
+    C()
+    {
+        Sopen(this.hashCode());   //100
+    }
+}
+class Test
+{
+    p s void main(String [] args)
+    {
+        C c= new C();
+        Sopen(this.hashCode());    //100
+    }
+}
+
+In the above example we just created only child class object but both the 
+parent and child construct are executed for the child class object.
+
+4)Anyway we cannot create object for abstract class either directly or 
+indirectly, but abstract class can contain constructor. What is the need?
+
+Ans:
+Anyway we cannot create object for abstract class either directly or 
+indirectly,but abstract can contain constructor the main objective
+of abstract class constructor is to provide initialization for the 
+instance variables which are inheriting from abstract class to the child
+class, Whenever we are creating child class object automatically abstract 
+class constructor will be executed to perform initialization for the instance 
+variables which are inheriting from abstract class (code reuseability).
+
+5)Anyway we cannot create object for abstract class and interface, abstract class 
+can contain constructor but interface does not. Why??
+
+Ans:
+The main purpose of constructor is to perform initialization of an object
+i.e to perform initialization for the instance variables.
+Abstract class can contain instance variables which are required for child
+class object to perform initialization for this instance variables constructor
+concept is required for abstract classes.
+
+Every variable present inside interface is always public static final whether we are 
+declaraing or not hence there is no chance of existing instance variables inside
+interface because of this constructor concept not required for interfaces.
+
+6)Inside interface we can take only abstract methods.But in abstract class also we can
+take only abstract methods based on our Requirement. Then what is the need of interface??
+i.e is it possible to replace interface concept with abstract class??
+
+Ans: Already answer above
+
+
+
+Important Questions:
+Final Question Interface and Abstract.png
