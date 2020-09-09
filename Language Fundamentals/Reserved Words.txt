@@ -1,0 +1,124 @@
+===================================================================
+Reserved Words
+===============================================================
+
+In java some words are reserved to represent some meaning and functionality such type of words are known as reserved words.
+There are total 52 reserved words.
+
+chart:
+refer : Reserved_Keywords_1.PNG
+
+=====================================================
+Keywords for data types
+=====================================================
+
+1) byte 
+2) short
+3) int
+4) long
+5) float
+6) double
+7) boolean 
+8) char
+
+Key words for flow control :
+
+1) if
+2) else
+3) switch
+4) case
+5) default
+6) while
+7) do
+8) for
+9) break
+10) continue
+11) return
+
+Key words for modifiers:
+
+1) public
+2) private
+3) protected
+4) static
+5) final 
+6) abstract
+7) synchronized
+8) native
+9) strictfp 
+10) transient 
+11) volatile
+
+Key words for exeption handling:
+
+1) try
+2) catch 
+3) finally
+4) throw
+5) throws
+6) assert
+
+Class related keywords:
+
+1) interface
+2) extends
+3) implements
+4) package
+5) import 
+
+Object related key words:
+
+1) new 
+2) instanceof
+3) super
+4) this
+
+Return type keyword:
+
+1) void
+
+In java return type is mandatory if a method won't return anything then we have to declare that method with void return type.
+But in C language return type is optional and default return type is int.
+
+Unused Keywords:
+-----------------------------
+1) goto - usage of goto create serveral problems in old languages so sun people banned goto keyword in java.
+2) const - use final instead of const.
+
+Note* : goto and const are unused keyword if we try to use then then we will get compile time errors.
+
+Reserverd literals
+------------------------------
+
+1)true - values for boolean data types
+2)false - values for boolean data types
+3)null - default value for object reference.
+
+enum Keyword
+--------------------------------------
+
+We can use enum to defined a group of named constants.
+Example: 
+enum Month
+{
+    JAN,FEB,.....,DEC;
+}
+
+
+Conclusions:
+
+1) All 53 reserved words in java contains only lower case alphabet symbols.
+2) In java we have only new keyword and there is no delete keyword becasue destruction of useless object is responsibility of garbage collector.
+3) The following are new keywords in java :
+        i)strictfp   ---> 1.2V
+        ii)assert    --->  1.4V
+        iii)enum    ---> 1.5V
+4)  stictfp but not strictfp
+    instanceof but not instanceof
+    synchronized but not synchronize
+    extends but not extends
+    implements but not implement
+    import but not imports
+    const but not constant
+
+5) main is not a reserved word in java

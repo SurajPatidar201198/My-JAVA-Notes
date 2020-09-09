@@ -1,0 +1,87 @@
+=======================================================
+Identifier
+=======================================================
+
+A name in java program is called identifier which can be used for 
+idetification purpose it can be method name,or varaible name, class name,
+or label name.
+Example:
+    class Test
+    {
+        public static void main(String [] args)
+        {
+            int x=10;
+        }
+    }
+
+    There are 5 identifier in above program:
+    1)Test
+    2)args
+    3)main
+    4)x
+    5)String ---it is also a class name
+
+==============================================================
+Rules for defining JAVA identifiers
+==============================================================
+1) The only allowed characters in JAVA identifiers are :
+    1)a to z
+    2)A to Z
+    3)0 to 9
+    4)$
+    5)_
+
+    If we are using any other character we will get compile time error.
+    Example:
+    Total_Number  //valid
+    total#        //invalid
+
+2) Identifiers can't start with digits.
+    1) Total_Number   //valid
+    2) 123total_Number  //invalid
+3) Java identifiers are case sensitive offcourse java language is itself treated as case sentitive languaage.
+    Example:
+    class Test
+    {
+        int number = 10;
+        int Number = 10;
+        int NUMBER = 10;
+    }
+    //above all varaibles are different
+
+4) There is no length limit for java identifiers but it is not recommended to take to lengthy identifiers.
+
+5) We can't use reserved words as identifiers.
+    Example:
+    int x=10;   //valid
+    int if=10;  //invalid
+
+6) All predifined class name and interface names we can use as identifiers.
+    Example:
+    class Test
+    {
+        p s void main(String[] args)
+        {
+            int String = 888;
+            Sopen(String);    //888
+            int Runnable = 999;
+            Sopen(Runnable);   //999
+        }
+    }
+    Even though it is valid but it is not a good practic because it reduces readability and creates confusion.
+
+Which of the following are valid java identifiers:
+-------------------------------------------------------
+1)Total_Number  //valid
+2)total#         //invalid
+3)123total          //invalid
+4)total123     //valid  
+5)ca$h    //valid
+6)_$_$_$_$_$   //valid
+7)all@hands    //valid
+8)Java2Shape    //valid
+9)Integer        //valid
+10)Int       //valid
+11)int      //invalid
+
+
