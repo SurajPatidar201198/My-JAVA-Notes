@@ -1,0 +1,85 @@
+=====================================================================
+Data Types
+======================================================================
+
+1)In java every variable and every expression has some type
+2)Each and every data type is clealy defined.
+2)Every assignment should be checked by the compiler for type compatibility.
+Becasue of above reason we can conclude that JAVA language is strongly typed
+programming langage.
+
+Java is not considered as pure object oriented programming language because serveral oops 
+features are not supported by java.
+Like : Operator overloading
+       multiple inheritance  etc.
+Moreover we are depending on primitive datatypes which are non-objects
+
+primitive data types:
+    1)Numeric data types:
+        1)Intergral data types:
+            i) byte
+            ii) short
+            iii) int 
+            iv) long
+        2)Floating point data types:
+            i) float 
+            ii) double
+
+    2)Non-Numeric data types: 
+        i) char 
+        ii) boolean
+        
+*Except boolean and char remaining data types are considered as signed data types becuase we can represent
+both positive(+) and negative(-) numbers.
+
+-----------------------------------------------
+byte
+-----------------------------------------------
+Size : 1byte(8bits)
+MAX_VALUE : +127
+MIN_VALUE : -128
+range: -128-127
+
+The most significant bit act as signed bit, 0 means positive number 1 means negative number,
+positive number will repesented directly in memeory whereas negative number is represented in 2s component. 
+
+byte b = 10     //valid
+byte b = 127   //valid
+byte b = 128   //invalid   ce: possible loss of precision found int required byte
+byte b = 10.5  //invalid ce: P L P found double requried byte
+byte b = true  //invalid  ce: incompatible type found boolean required byte.
+byte b = "suraj" //invalid  ce: incompatible type found String required byte.
+
+byte is the best choice if we want to handle data in terms of streams either from the file or the network.
+file supported form or network supported form is byte.
+
+-----------------------------------------------
+short
+-----------------------------------------------
+Size : 2bytes(16bits)
+range : -2^15 to (2^15)-1
+ -32768 to 32767
+
+This is the mostly rarely data type in java.
+
+short s = 32767
+short s = 32768 //invalid : ce: possible loss of precision found int required short
+short s = 10.5  //invalid : ce: possible loss of precision found double required short
+short s = true   //invalid  ce: incompatible type found boolean required short.
+
+short data type is best suitable for 16bit processor like 8085 but this processors are compeltely outdated and
+hence corresponding short data type is outdated data type.
+
+---------------------------------------------------------------
+int 
+---------------------------------------------------------------
+Size : 4bytes(32 bits)
+range: -2^31 to (2^31) - 1
+[-2147483648 to 2147483647]
+
+Most commonly used data type is int.
+
+int x = 2147483647
+int x = 2147483648 //invalid ce: integer number too large
+int x = 2147483648l //invalid ce: possible loss of precision found long required int
+int x = true  // ce: incompatible type found boolean required int
