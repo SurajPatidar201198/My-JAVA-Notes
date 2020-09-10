@@ -1,0 +1,110 @@
+===============================================================================================================================
+Types of Variables
+======================================================================================================================
+-------------------------------------------------------------------
+Division 1:
+-------------------------------------------------------------------
+Based on type of value represented by a variable all variables are divided into 2 types:
+1)primitive variables :  Can be used to represent primitive values.
+Example:
+int x = 10;
+
+2)reference variables: Can be used to refer objects.
+Example: 
+Student s = new Student;
+
+-------------------------------------------------------------------
+Division 2:
+-------------------------------------------------------------------
+Based on position of declaration and behaviour all variables are divided into 3 types:
+1)Instace variables
+2)Static variable
+3)Local variables
+
+-----------------------------------
+Instance variables
+-----------------------------------
+If a value of a variable is varied from object to object such type of variables are called instance variable.
+For every object a seperate copy of instance variable will be created.
+
+Instance variables should be declared within the class directly but outside of any method,block or constructor.
+
+Instance variable will be created at the time of object creation and destroyed at the time of object destruction.
+Hence, the scope of instance variable is exactly same as the scope of object.
+
+Instance variables will be stored in the heap memory.As the part of object.
+
+We can't access instace variables directly from static area but we can access by using object reference.But we can 
+access instance variables directly from instance area.
+
+    class Test
+    {
+        int x=10;
+        p s void main(String[] args)
+        {
+            Sopen(x);             //ce: non-static variable cannot be refernced from static context
+            Test t = new Test();
+            Sopen(t.x);            //10  this is valid.
+        }
+        public void m1()
+        {
+            Sopen(x);     //valid becasue this method is related to object 
+        }
+    }
+
+
+For instance variable JVM will always provide default values and we are not required to perform initialization explicitly.
+    class Test
+    {
+        int x;
+        double d;
+        boolean b;
+        String s;
+        p s void main(String[] args)
+        {
+            Test t1 = new Test();
+            Sopen(t1.x);   //0
+            Sopen(t1.d);    //0.0
+            Sopen(t1.b);    //false
+            Sopen(t1.s);    null
+        }
+    }
+
+Instance variables are also known as object level variables or attributes.
+
+-------------------------------------
+Static variables
+------------------------------------
+
+class Student
+{
+    String name;
+    int rollNo;
+    String CollegeName;
+}
+If the value of a variable is not varied from object to object then it is not recommended to declare variable as instance 
+variable.
+
+We have to declare such type of variable at class level by using static modifier.
+
+In the case of instance variable for every object a seperate copy will be created but in the case of static variable a single 
+copy will be created at class level and shared by every object of the class.
+
+Static variables should be declared within the class directly but outside of any method,block or constructor.
+
+Static variables will be created at the time of class loading and destroyed at the time of class unloading hence scope
+of static variable is exactly same as .class file.
+
+JAVA Test steps:
+1)Start JVM
+2)create and start main thread
+3)locate Test.class file
+4)load Test.class file    <--static variable created
+5)Execute main() method
+6)unload Test.class       <--static variable destroyed.
+7)Terminate main thread
+8)shutdown JVM
+
+
+
+
