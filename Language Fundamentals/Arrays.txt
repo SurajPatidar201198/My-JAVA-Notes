@@ -1,0 +1,406 @@
+=======================================================
+Agenda
+=========================================================
+1)Introduction
+2)Array declaration
+3)Array creation
+4)Array initialization
+5)Array declaration, creation, & initialization in a single line
+6)length vs length()
+7)Anonymous arrays
+8)Array elements assignment
+9)Array variables assignement
+
+==============================================================
+Introduction
+===================================================================
+An array is an ordered collection of fixed number of homogeneous data elements.
+
+The main advantags of arrays is we can represent huge number of values by using a single variable.
+So that the readibility of the code will be improved.
+The main disadvantage of arrays is fixed in size i.e once we create an array there is no chance of 
+increasing or decreasing the size based on our requirement.
+Hence to use the array concept compulsary we should no size in advance which may be not possible always.
+
+===================================================================
+Array declaration
+=================================================================
+1-D array declaration:
+
+    int[] x;        //recommended becuase name is clearly seperated from type
+    int []x;
+    int x[];
+
+    Conclusion:
+    1) At the time of declaration we can't specify the size otherwise we will get compile time error.
+       Therefore int[6] x; is invalid.
+2-D array declaration:
+
+    int[][] x;
+    int [][]x;
+    int x[][];
+    int[] []x;
+    int[] x[];
+    int []x[];
+    above all declarations are valid.
+
+Which of the following are valid:
+1)int[] a,b ;  // a is 1-D, b is 1-data
+2)int[] a[],b;  //a is 2-D, b is 1-data
+3)int[] a[],b[];  //a is 2-D, b is 2-data
+4)int[] []a,b;    //a is 2-D, b is 2-data
+5)int[] []a,b[];  //a is 2-D, b is 3-data
+6)int[] []a,[]b;   //invalid
+
+If we want to specify dimension before the variable that faciity is applicable only for first variable in declaration if we are trying to apply for remaining we will get compile time error.
+Example:
+int[] []a,[]b,[]c;   //invalid
+
+3-D array declaration:
+int [][][]a;
+int a[][][];
+int[] [][]a;
+int[] a[][];
+int[] []a[];   ..etc;
+
+
+=============================================================
+Array Creation
+=============================================================
+
+Every array in java is an object only. Hence we can create array by using new operator.
+Example:
+int[] a = new int[5];   //a is the reference variable to array
+
+For every array type corresponding classes are available and this classes are part of java language and not available to the programmer level.
+you can check by:
+Sopen(a.getClass().getName());   // [I
+
+Array type                          corresponding class name
+int[]                                   [I
+int[][]                                 [[I
+double[]                                [D 
+short[]                                 [S
+byte[]                                  [B 
+boolean[]                               [Z
+
+
+
+LoopHoles:
+-----------------
+1)At the time of array creation compulsory we should specify size othwise we will get compile time error.
+    Example:
+    int[] x = new int[];    //invalid ce
+    int[] x = new int[6];   //valid
+
+2)It is legal to have an array with size 0 in java.
+    int[]x = new int[0];   //valid
+
+3)If we are trying to specifing array size with negative int value then we will get runtime exception saying 'negative array size exception'.
+    int[] x = new int[-3];      //invalid re: negative runtime exception
+
+4)To specify array size the allowed data types are(byte,short,char,int) if we are tying to specify other type then we will get compile time error.
+
+    Example:
+    int[] x = new int[10];  //valid
+    int[] x = new int['a'];     //valid
+    byte b = 20;
+    int[] x = new int[b];   //valid
+    short s = 30;
+    int[] x = new int[s];   //valid
+    int[] x = new new int[10l];  //invalid
+
+5)The maximum allowed size in java is 2147483647 which is the maximun value of int data type.
+    int[] x = new int[2147483647];   //valid
+    int[] x = new int[2147483648];  //invalid because this value is out of array range and we will get ce: integer number too large.
+    Even in first case we may get runtime exception if sufficient heap memoery not available.
+
+
+--------------------------------------
+2-D array creation
+--------------------------------------
+
+In java two dimensional array not implemented by using matrix style.Sun people followed array for arrays approach for multi dimensional array creation.
+The main advantage of this approach is memeory utlilization will be improved.
+
+
+Example 1:
+int[][] x = new int[2][];   //atleast base size we have to write
+x[0]= new int[2];
+x[1]= new int[3];   
+
+Example:
+refer: s1.png
+
+Which of the following array declarations are valid:
+1)int[] a = new int[];  //invalid
+2)int[] a = new int[3];   //valid
+3)int[][] a = new int [][];   //invalid
+4)int[][] a = new int[3][];   //valid
+5)int[][] a = new int[][4];    //invalid
+6)int[][] a = new int[3][4];    //valid
+7)int[][][] a = new int[3][4][5];   //valid
+8)int[][][] a = new int[3][4][];   //valid
+9)int[][][] a = new int[3][][5];  //invalid
+10)int[][][] a = new int[][4][5];   //invalid
+
+=============================================================
+Array initialization
+=============================================================
+
+1)Once we creates an array by default every element value is initialized with default value of that particular data type.
+    Example:
+    int[] x = new int[4];
+    Sopen(x);  [I@32ab14;
+    Sopen(x[0];  //0
+
+    *Whenever we are trying to print reference variable internally toString() method will called which is implemeneted to return the string in following form: classname@hashCode_in_hexadecimalform.
+
+2)
+    int[][] x = new int[2][3];
+    Sopen(x);   //[I@332e4a
+    Sopen(x[0]);  //[I@1982fd
+    Sopen(x[0][0]);  //0
+
+3) 
+    int[][] x = new int[2][];
+    Sopen(x);   //[I@332e4a
+    Sopen(x[0]);  //null  i.e defualt value of reference variable
+    Sopen(x[0][0]);  //ce: null pointer exception
+
+4) Once we creates an array every array element is by default is initialized with default value if we are not satisfied with the default value then we override this value
+with out customized values.
+    int[] x = new int[3];
+    x[0]=2;
+    x[1]=4;
+    x[2]=5;
+    x[3]=3;  //array index out of bound Exception;
+    x[-6]=4  // rray index out of bound Exception;
+    x[-2]=4;   //this will compile fine but it will give runtime exception
+
+If we are trying to access array elements with out of range index either positive or negative value then we will get runtime excetion array index out of bound exception.
+
+
+=====================================================================
+Array declaration,creating and initialization in  a single line
+======================================================================
+int [] x;
+x = new int[4];
+x[0]=3;
+x[1]=4;
+x[2]=3;
+x[3]=5;
+
+We can declare,create and initialize array in a single line(shortcut representation):
+int [] x = {10,30,20};
+char[] ch={'a','e','i'};
+String[] s={"A","AA","AAA"};
+
+We can use this short for multidimetional arrays also:
+int[][] x = {{10,20},{30,40,50}};
+
+if we want to use this shortcut compulsory we have to perform all activities in a single line if we are trying to divide it into multiple line then we will get ce.
+int[] x={10,20,40};  //valid
+
+int [] x;
+x={10,20,40};   //invalid
+
+========================================================================
+length vs length()
+========================================================================
+
+length:
+    length is final variable applicable for array,length varible represents size of the array.
+        int[] x = new int[5];
+        Sopen(x.length());   ce: cannot find symbol method length()
+        Sopen(x.length);;  //valid output is 5.
+
+length():
+    length() method is a final method applicable for strings length method returns number of characters present in the list.
+        String s = "suraj";
+        Sopen(s.length);   //ce: cannot find symbol variable length
+        Sopen(s.length());   //5;
+
+length variable applicable for arrays but not for string objects whereas length() applicable for string objects but not for arrays.
+
+Example:
+String[] s ={"A","AA","AAA"};
+1)sopen(s.length);  //3;
+2)sopen(s.length());  //ce : length() not applicable for array
+3)sopen(s[0].length);   //ce: length is not applicable for string
+4)sopen(s[0].length());  //1
+
+
+In multidimetional array length variable represent base size but not total size.
+Example:
+int[][] x = new int[6][3];
+Sopen(x.length);  //6
+Sopen(x[0].length)  //3
+
+There is no direct way of find total length of multiple dimensional array.But we can find indirectly.
+i.e x[0].length + x[1].length + x[2].length....
+
+=====================================================================
+Anonymous arrays
+======================================================================
+
+Sometimes we can declare an array without name such type of nameless arrays are called ananymous arrays.
+The main purpose of ananymous arrays is just for instant use(one time usage).
+
+We can create Anonymous array as follows: new int[]{10,20,40};
+                                          new int[3]{10,20,30}   //invalid
+While creating ananymous array we can't specify size otherwise we will get compile time error.
+Sameway we can create multidimetional Anonymous arrays also: new int[][]{{10,30}{30,40,50}};
+class Test
+{
+    p s void main(String[] args)
+    {
+        sum(new int[]{10,20,30,40});
+    }
+    p s void main(String[] args)
+    {
+        int total=0;
+        for(int x1=x)
+        {
+            total=total+x1;
+        }
+        Sopen("Total sum : "+ total);
+    }
+
+}
+
+
+Based on our requirement we can give the name to the ananymous array then it is no longer ananymous.
+int[] x = new int[]{20,40,40};
+
+
+===========================================================
+Array elements assignment
+============================================================
+ 
+Case 1:
+int[] x = new int[5];
+x[0]=10;
+x[1]='a';      x[1]==97;  //valid
+byte b = 20;  
+x[2] = b;   //valid
+short s =33;
+x[3]=s;    //valid
+x[4] = 10l;   //invalid found long required int
+
+1) In the case primitive type arrays as array elements we can provide any type which can be implicitly promoted to declared type.
+
+2) In the case of float arrays the allowed data types are byte,short,char,int,long,float.
+    
+Case 2:
+In the case of object type of arrays as array elements we can provide either declared type objects or its child class ojects.
+Example 1:
+Object[] a = new Object[10];
+a[0] = new Object();
+a[1] = new String("Suraj");
+a[2] = new Integer(10);
+
+Example 2:
+Number[] n = new Number[10];
+n[0] = new Integer(10);
+n[1] = new Double(10.5);
+n[2] = new String("suraj");   //invalid ce
+
+Case 3:
+For interface type arrays as array elements its implenetation class objects are allowed.
+Runnable[] r = new Runnable[10];
+r[0] = new Thread();   /valid as Thead class is implementation of runnable interface
+r[1] = new String("Suraj");   //invalid
+
+
+
+Refer : array elements assignment.png
+
+===========================================================
+Array variable Assignment
+============================================================
+
+Case 1:
+Element level promotion is not applicable at array level.For example char element can be promoted to int type whereas char array can't be promoted to int array.
+Example:
+int[]  x = {10,20,30,40};
+char[] ch = {'a','b','c'};
+int[] b = x;  //valid
+int[] c = ch;   //invalid ce: incompitable types found char[] required int[].
+
+Which of the following conversion are valid:
+char==>int          //valid
+char[]==>int[]      //invalid
+int==>double        //valid
+int[]==double[]    //invalid
+float==>int     //invalid
+float[]==>int[]        //invalid
+String==>Object      //valid
+String[]==>Object[]     //valid     
+
+In case of object type arrays child type class array can be promoted to parent class type array.
+Example : 
+String[] s = {"AA","AAA"};
+Object o = s;
+
+Case 2:
+
+int[] a = {10,20,30,40,50,60}
+int[] b = {70,80};
+
+a=b;   //valid
+b=a;    //valid
+
+Whenever we are assigning one array to another array internal elements won't be copied just reference variable will be assigned.
+
+Case 3:
+
+int[][] a = new int[3][];
+
+Whenever we are assigning one array the dimensions must be matched.In the place of 1-D we should provide 1-D array only.If we are trying to provide any other
+dimension array we will get ce.
+int[][] a = new int[3][];
+a[0] =  new int[4][3];   //ce
+a[0]=10         //ce
+
+Whenver we are assigning one array to another array both dimension and type must be matched but sizes are not required to match.
+
+=============================================================
+Questions:
+==============================================================
+Q1):
+class Test
+{
+    p s void main(String[] args)
+    {
+        for(int i=0;i<=args.length;i++)
+        {
+            Sopen(args[i]);
+        }
+    }
+}
+//compiling:
+java Test A B C 
+ouput:
+A
+B
+C
+RE: array index out of bound because there is i<=
+
+
+
+
+Q2)
+
+int[][] a = new int[4][3];
+a[0]=new int[4];
+a[1]=new int[2];
+a=new int[3][2];
+
+1)How many objects are created?   //11
+2)Total how many objects eligible for garbage collection.   //7
+
+
+==This done here===
+
+
