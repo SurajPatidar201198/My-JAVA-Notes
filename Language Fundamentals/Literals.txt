@@ -115,3 +115,115 @@ boolean b = "true";  //incompitable type found String required boolean
 --------------------------------------------------------------
 char literals
 --------------------------------------------------------------
+
+1)We can specify char literals as single character within single quotes.
+
+    Example:
+    char ch = 'a';   //valid
+    char ch = a;     //ce : cannot find symbol variable a class test
+    char ch = "a";    //ce: incompitable types found: java.lang.String required: char
+    char ch = 'ab';     //ce1: unclosed char literal   //ce2: unclosed char literal    // ce3: not a statment
+
+2)We can specify char literal as integral literals which represent unicode value of the character under that integral literal can be 
+specified in decimal,octal or hexadecimal form. But allowed range is 0 to 65535.
+
+    char ch = 97;
+    Spen(ch);    //a;
+
+    char ch = 0XFace;  //valid
+    char ch = 0777;   //valid
+    char ch = 65535;    //valid
+    char ch = 65536;    //POSSIBLE LOSS OF PRECISION FOUND INT required char
+
+    If you try to print :
+    char ch = 197;   //output will be '+'
+    char ch = 1970;        //output will be '?'
+    char ch = 19700;    //ouput will be '?'
+
+    Now in case of 1970 and 19700 the output is same i.e '?' becuase our system doesn't have related font we can say.You can check www.unicode.org website all unicodes are availble there.
+
+3)We can represent char literals in unicode representation which is nothing but '\uXXXX'. This XXXX is hexadecimal number.
+    Example:
+    char ch = '\u0061';    //valid
+    sopen(ch);   //a
+
+4)Every escape character is a valid char literal.
+    Example: 
+    char c = '\t';
+    char c = '\n';
+    char c = '\m';   //no such escape character
+
+
+    Escape characters                   description
+    \n                                      New Line
+    \t                                      Horizontal Tab
+    \r                                      Carriage return
+    \b                                      backspace
+    \f                                      form feed
+    \'                                      single quote
+    \"                                      double quote
+    \\                                      back slace
+
+
+    Sopen("This is ' symbol");  //invalid
+    Sopen("This is \' symbol");  //valid
+
+Which of the following are valid:
+1)char ch = 65536; //invalid
+2)char ch = 0XBeer; //invalid
+3)char ch = \uFace;  //invalid
+4)char ch = '\uBeef';  //valid
+4) char ch = '\m';  //invalid
+6) char ch = '\iface' ; //invalid
+
+-------------------------------------------------------------
+String literals
+-----------------------------------------------------------
+Any sequence of characters in double code is treadted as string literal.
+String s = "suraj";
+
+
+1.7 Version enhancement with respect to literals:
+
+1) Binary literals:
+
+    For integral data types until 1.6 version we can specify literal value in the following ways:
+    1) decimal
+    2) octal
+    3) hexadecimal
+    But from 1.7 version we can also specify literal value even in binary form also.
+    allowed digits are 0 and 1. literal value should be prefixed with 0b or 0B.
+    Example:
+    int x = 0b1111;
+    Sopen(x);
+
+2) Usage of _ in numeric literals.
+
+    From 1.7 version onwards between digits of numeric literals.
+
+    double d = 123456.789  //valid
+    double d = 1_23_456.789  //valid
+
+    The main advantage of this approach is readibility of the code will be improved.
+
+    At the time of compilation this underscore symbols will be removed automatically hence after compilation the above line will become.
+    double d = 123456.789  //valid
+    double d = 123456.789  //valid
+
+    We can use more than one underscore(_) between digits.
+    double d = 1__2_4__4__5_3.4_8_9;
+
+    We can use _ symbol only between the digits if we are using anywhere else. We will get compile time errors.
+    Example:
+    double d = _1_23__4_4.4_5_5;  //invalid
+    double d = 2_4_4_.3_4_3;    //invalid
+    double d = 2_3_4.42_;   //invalid
+
+    Lower data type value we can assign to higher data type variable:
+
+    byte --> short --> int --> long ---> float ---> double
+    char --> int --> long --> float --> double
+
+    8 byte long value we can assign to 4 byte float variable because both are following different memory representation internally.
+    float f = 10l;
+    Sopen(f);
