@@ -1,0 +1,176 @@
+The most commonly required methods for every java class whether it is predefined class or
+customized class are defined in a seperate class which is nothing but object class.
+
+Every class in java is a child class of object either directly or indirectly so that object class methods are by
+default available to every java class.
+Hence object class is considered as root of all java classes.
+
+Note: If our class doesn't extends any other class then only our class is the direct child class of object.
+Example: 
+A-----child of----->Object
+
+If our class extends any other class then our class is indirect child class of object.
+class A extends B 
+{
+
+}
+In above case this is the heirachy:
+A--child_of--->B----child of---->Object
+
+Conclusion:
+1)Either direct or indirectly won't provide support for multiple inheritance w.r.t classes.
+
+
+Object class defines the follwing 11 methods:
+1)public String toString();
+2)public native int hashCode();
+3)public boolean equals(Object o);
+4)protected native Object clone() throws CloneNotSupportedException
+5)protected void finalize() throws Throwable
+6)public final Class getClass()
+7)public final void wait() throws InterruptedException
+8)public final native void wait(long ms) throws InterruptedException
+9)public final void wait(long ms,int ns) throws InterruptedException
+10)public native final void notify()
+11)public native final void notifyAll();
+
+Strictly speaking object class contains 12 methods the extra method is private static native void registerNatives(); this method
+internally required for object and not available to the child class and hence we are not required to consider this method.
+
+===========================================================
+toString()
+===========================================================
+We can use toString() method to get string representation of the object 
+String s = obj.toString();
+Wheneever we are trying to print object reference internally toString() method will be called.
+
+Student s =  new Student();
+Sopen(s);  ==> Sopen(s.toString())
+
+If our class doesn't contain toString() method then object class toString() method will be executed.
+
+class Student
+{
+    String name;
+    int rollno;
+    Student(String name,int rollno)
+    {
+        this.name=name;
+        this.rollno=rollno;
+    }
+    public static void main(String[] args)
+    {
+        Student s1= new Student("Suraj",30);
+        Student s2= new Student("Ravi",102);
+        Sopen(s1);   //Student@1234
+        Sopen(s1.toString());  //Student@1234
+        Sopen(s2);  //Student@32e3
+    }
+}
+
+In the above example object class toString() method got executed which is implemented as follows.
+public String toString()
+{
+    return getClass().getName() + "@" + Integer.toHexString(hashCode());
+}
+
+Example: classnam@hashocde_in_hexadecimalform
+
+Based on our requirement we can override toString() method to provide our own string representation.
+For example: Wheneever we are trying to print student object reference to print his name and roll no. we have
+to overide toString() method as follows.
+
+class Student
+{
+    String name;
+    int rollno;
+    Student(String name,int rollno)
+    {
+        this.name=name;
+        this.rollno=rollno;
+    }
+    public String toString()
+    {
+        return name+"----"+rollno;
+    }
+    public static void main(String[] args)
+    {
+        Student s1= new Student("Suraj",30);
+        Student s2= new Student("Ravi",102);
+        Sopen(s1);   //Suraj---30
+        Sopen(s1.toString());  //Suraj---30
+        Sopen(s2);  //Ravi---102
+    }
+}
+
+
+
+
+In all wrapper classes,collection class,string class,stringBuffer and stringBuilder classes toString() method is overridden 
+for meaningful representation hence it is highly recommended to override toString() method in our class also.
+
+Example:
+class Test 
+{
+    public String toString()
+    {
+        return "test";
+    }
+    p s void main(String[] args)
+    {
+        String s = new String("durga");
+        Sopen(s);  //durga
+        Integer I = new Integer(10);
+        Sopen(I);  //10
+        AL l = new AL();
+        l.add("A");
+        l.add("B");
+        sopen(l);  //[A,B];
+        Test t = new Test();
+        Sopen(t);   //test as we  have override toString() method in our class
+    }
+}
+
+
+=============================================================================
+hashCode()
+=============================================================================
+1)For evert object a unique number genereated by JVM which is nothing but hashCode.
+2)hashCode won't represents address of object.
+3)JVM will use hashCode while saving objects into hashing related data structures like 
+4)hashtable,hashmap,hashset etc.
+5)The main advantage of saving object based on hashcode is search operation will become easy(the most powerful search algorithm upto today is hashing).
+
+If we are giving the chance to object class hashcode method it will generate hashcode based on address of the object,it 
+doesn't mean hashcode represent address of the object.
+
+Based on our requirement we can override method in our class to generate our own hashcode.
+Overridding hashCode() method is said to be proper if and only if for every object we have to gernerate a unique number as hashcode.
+
+class Student
+{
+    public int hashCode()
+    {
+        return 100;
+    }
+}
+//improper way becuase all object will get same hashcode
+This is improper way of overridding hashcode() because for all student object we are generating same number as hashcode.
+
+class Student
+{
+    public int hashCode()
+    {
+        return rollno;
+    }
+}
+//this is proper way to generate hashcode make sure it should be unique.
+//this is proper way of overridding hashcode method becuase we are generating a different hashcode for every object.
+
+------------------------------------
+toString() vs hashCode()
+------------------------------------
+1)If we are giving chance to object class toString() method it will internally calls hashcode method.
+2)If we are overridding toString() method then our toString() method may not call hashCode() method.
+
+Example: toString() and hashCode().png
