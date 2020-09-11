@@ -95,7 +95,8 @@ Static variables should be declared within the class directly but outside of any
 Static variables will be created at the time of class loading and destroyed at the time of class unloading hence scope
 of static variable is exactly same as .class file.
 
-JAVA Test steps:
+
+JAVA Test
 1)Start JVM
 2)create and start main thread
 3)locate Test.class file
@@ -105,6 +106,245 @@ JAVA Test steps:
 7)Terminate main thread
 8)shutdown JVM
 
+Static variables will be stored in method area.
 
 
+We can aaccess static variable either by obeject reference or by class name but recommended to use class name.
+Within the same class it is not required to use class name and we can access directly.
 
+class Test
+{
+    static int x = 10;
+    p s void main(String[] args)
+    {
+        Test t = new Test();
+        Sopen(t.x);         //valid
+        Sopen(Test.x);      //valid
+        Sopen(x);    //valid
+    }
+    public void m1()
+    {
+        Sopen(x);   //valid   We can access static variable directly from both instance and static areas.
+    }
+}
+
+For static variables JVM will provide default values and we are not required to perform initialization explicitly.
+class Test
+{
+    static int x;
+    statix double d;
+    static String s;
+    p s void main(String[] args)
+    {
+        Sopen(x);   //0
+        Sopen(d);   //0.0
+        Sopen(s);   //null
+    }
+}
+
+Static variables are also known as class level variables or fields.
+
+class Test
+{
+    static int x = 10;
+    int y = 20;
+    p s void main(String[] args)
+    {
+        Test t1 = new Test();
+        t1.x = 888;
+        t1.y = 999;
+        Test t2 = new Test();
+        Sopen(t2.x+"---"+t2.y);   //888---20;
+    }
+}
+
+-----------------------------------
+local variables
+-----------------------------------
+
+Sometimes to meet the temperory requirement of the programmer we can declare variable inside a method 
+or block or constructor such type of variables are called local variables or temperory variables or stack variables or automatic variables.
+
+Local variable will be stored inside stack memory.
+
+Local variables will be created while executing the block in which we declared it once block execution completes automatically local variables will be destroyed.
+Hence the scope of local variable is the block in which we declared it.
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        int i=0;
+        for(int j=0;j<3;j++)
+        {
+            i=i+j;
+        }
+        Sopen(i+-----+j);      //ce: cannot find symbol variable j in class test
+    }
+}
+
+For local variables JVM don't provide default values compulsory we should perform initialization explicity before using that variable i.e if we are not using that variable  then it is not required to perform initialization.
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        int x;
+        Sopen("Hello");
+    }
+}
+//o/p: hello
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        int x;
+        Sopen(x);    ce //variable c might not have been initized
+    }
+}
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        int x;
+        if(args.length>0)
+        {
+            x=10;
+        }
+        Sopen(x);    /this will give error when we dont provide and command line arguments its bad practice
+    }
+}
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        int x;
+        if(args.length>0)
+        {
+            x=10;
+        }
+        else
+        {
+            x=24;
+        }
+        Sopen(x);    //compile and run fine  good practice but its highly recommended to initlize local variable when we create them
+    }
+}
+
+Note 1: It is not recommended to perform initialization for local variables inside logical blocks becuse there is no guarantee for execution of this block at runtime.
+Note 2: It is highly recommended to perform initialization of local variable at the time declaration atleast for defualt values.
+
+The only applicable modifier for local variables is final. By mistake if we are trying to apply any other modifier then we will get compile time error.
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        public int x = 10;      //invalid
+        private int x = 10;     //invalid
+        protected int x = 10;       //invalid
+        static int x = 10;      //invalid
+        final int x = 10;       //invalid
+    }
+}
+
+Note :  If we are not declraring with any modifier then by default it is default but this rule is applicable only for instance and static variable but not for local variable.
+
+Conclusion:
+1)For instance and static variables JVM will provide default values and we are not required to perform initialization explicitly.
+2)But for local varaible JVM won't provide defualt compulsory we should perform initialization explicitly before using that variable.
+3)Instance and static variables can be accessed by multiple threads simontenously and hence this are not thread safe but in case of local variable for every 
+thread a seperate copy will be created and hence local variables are thread safe.
+4)Every varaible in java should be either instance,static,or local, every variable in java should be either primitive or reference.Hence various possible combinataion of variables in java are :
+    1)instance primitive
+    2)instance reference
+    3)static primitive
+    4)static reference
+    5)local primitive
+    6)local reference
+
+    Example:
+    class Test
+    {
+        int x = 10;         //instance - primitive
+        static String s = "suraj";      //static - refernce
+        p s void main(String[] arg)
+        {
+            int[] y = new int[3];       //local reference
+        }
+    }
+
+======================================================================
+Uninitialized Arrays
+======================================================================
+
+------------------------
+Instace level
+-----------------------
+class Test
+{
+    int[] x;
+    p s void main(String[] args)
+    {
+        Test t = new Test();
+        Sopen(t.x);     //null
+        Sopen(t.x[0]);   //runtime exception saying nullpointer exception
+    }
+}
+
+class Test
+{
+    int[] x= new int[3];
+    p s void main(String[] args)
+    {
+        Test t = new Test();
+        Sopen(t.x);     //[Ie3a44
+        Sopen(t.x[0]);   //0
+    }
+}
+
+--------------
+Static level
+----------------
+class Test
+{
+    static int[] x= new int[3];
+    p s void main(String[] args)
+    {
+        Test t = new Test();
+        Sopen(t.x);     //[Ie3a44
+        Sopen(t.x[0]);   //0
+    }
+}
+
+----------------------
+local level
+----------------------
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        int[] x;
+        Sopen(t.x);     //ce 
+        Sopen(t.x[0]);   //ce
+    }
+}
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        int[] x= new int[3];
+        Sopen(t.x);     //[Ie3a44
+        Sopen(t.x[0]);   //  0
+    }
+}
+Note : Once we created an array every array element by default initized with default values irresptive
+of whether it is instace, static , or local array.
+
+
+======this done here========
