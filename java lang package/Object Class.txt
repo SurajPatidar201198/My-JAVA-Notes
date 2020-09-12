@@ -174,3 +174,152 @@ toString() vs hashCode()
 2)If we are overridding toString() method then our toString() method may not call hashCode() method.
 
 Example: toString() and hashCode().png
+
+
+==================================================
+equals() method
+==================================================
+we can use equals method to check equality of two objects.
+If our class doesn't contains equals method then object class equals method will be executed.
+
+refer: equalsMethod1.png
+
+In the above example object class equals() method got executes which is meant for reference comparison(address comparison)
+i.e if two references pointing to the same object then only .equals() method returns true.
+
+Based on our requirements we can override equals method for content comparison.
+
+While overidding equals method for content comparison we have to take care about the following what is the meaning of 
+equality(i.e whether we have to check only name or only roll number or both)
+If we are passsing different type of object our equals method should not rise classClastExeption i.e we have to handl classCastExeptino 
+if we are passing null then our equals shoudl not rise null pointer exeption that is we have to handle null pointer exception to return
+false.
+Refer : toString Method.png
+The following is the proper way of overridding for student class content comparison.
+public boolean equals(Object obj)
+{
+    try{
+    String name1=this.name;
+    int rollno1=this.rollno;
+    Student s = (Student)obj;
+    String name2=s.name;
+    int rollno2=s.rollno;
+    if(name1.equals(name2) && rollno1==rollno2)
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+    }
+    catch(Exception e)
+    {
+        return false;
+    }
+}
+
+//write this code if you want to override object class equals() method and want to check comparison
+based on the content.
+
+
+
+
+==========================================================================
+java.lang.String
+==========================================================================
+ 
+Case 1:
+
+    refer : String Vs StringBuffer.png
+
+Case 2:
+
+    == is for reference comparison everywhere
+    .equals()  is for content comparison in String class this method is overridden for content comparison in String class.
+
+    .equals() is for reference comparison in StringBuffer Class this method is not overridden in StringBuffer class
+
+    For Example:
+
+    String s1= new String("Suraj");
+    String s2= new String("Suraj");
+    Sopen(s1==s2);   //false as this compares references
+    Sopen(s1.equals(s2));  //true as equals() method is overridden in String class which compares content
+
+    StringBuffer sb = new StringBuffer("Suraj");
+    StringBuffer sb1 = new StringBuffer("Suraj");
+    Sopen(sb==sb1);   //false as this compares references
+    Sopen(sb.equals(sb1));  //false as equals() method is not overridden in StringBuffer class
+
+    In string class .equals() method is overridden for content comparison hence even thought objects are different 
+    if content is same .equals() method returns true.
+
+    In stringBuffer class .equals() method is not overridden for content comparison hence objects class .equals() method
+    got executed which is meant for reference comparison due to this if objects  are
+    different .equals() method returns false even if content is same.
+
+Case 3: 
+
+    1)String s = new String("durga");
+
+    In this case two objects will be created one in the heap area and the other in SCP(String Constant Pole) and s is always
+    pointing to heap object.
+
+
+
+    2)String s = "durga";
+
+    In this case only one object will be created in SCP and s is always pointing to that object.
+
+    Note 1: Object creationg in SCP is optional first it will check is there any object already present in SCP with required content 
+    if object already present then existing object will be reused.
+
+    If Object not already available then only a new object will be created.
+
+    But this rule is applicable only for SCP but not for heap.
+
+    In java there are 5 memory area:
+    1)heap  -- garbage collector concept is applicable in heap area
+    2)method area --- SCP is present here 
+    3)stack area
+    4)PC registers 
+    5)Native method stacks
+
+    Note 2: garbage collector is not allowed to access SCP area hence even though object
+    doesn't contain reference variable it is not eligible for GC if it is present SCP area.
+
+    All SCP objects will be distroyes automatically at the time of JVM shutdown.
+
+    Example 2:
+
+    String s1 = new String("druga");
+    String s2 = new String("durga");
+    String s3 = "durga";
+    String s4 = "durga";
+
+    //3 object will be created
+
+    Refer : Heap and SCP.png
+
+    Note: Whenver we are using new operator compulory a new object will be created in heap area hence there may be a chance 
+    of existing two objects with same content in heap area but not in SCP i.e duplicate objects are possible in heap area but 
+    not in SCP.
+
+    Example: 
+    //String s1 = new String("durga");
+    s1.concat("software");
+    String s2 = s1.concat("solutions");
+    s1=s1.concat("soft");
+    sopen(s1);
+    sopen(s2);
+
+    Refer : Heap and SCP 2.png;
+
+    Note: 
+    1)For every string constant one object will be placed in SCP area.
+    2)Becuse of some runtime operations if an object is required to create  that
+    object will be placed only in the heap area but not in SCP area.
+
+
+
