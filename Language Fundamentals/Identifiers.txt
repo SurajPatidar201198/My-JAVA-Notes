@@ -78,7 +78,7 @@ Which of the following are valid java identifiers:
 4)total123     //valid  
 5)ca$h    //valid
 6)_$_$_$_$_$   //valid
-7)all@hands    //valid
+7)all@hands    //invalid
 8)Java2Shape    //valid
 9)Integer        //valid
 10)Int       //valid
