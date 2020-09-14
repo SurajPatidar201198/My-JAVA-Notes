@@ -1,0 +1,148 @@
+====================================================================
+main method
+====================================================================
+
+Whether class contains main method or not and whether main method is declared accoding to 
+requirement or not this things won't be checked by the compiler, at runtime JVM is responsible
+to check this things.
+If JVM unable to find main method then we will get runtime exception saying "noSuchMethodError:main".
+
+
+
+At runtime JVM always search for the main method with the following prototype: public static void main(String[] args);
+
+public: TO call by JVM from anywhere
+static: Without existing object also JVM has to call this method
+void: main() method won't return anything to JVM.
+main: This is the name which is configured inside JVM.
+String[] args: command line argument.
+
+The above syntax is very strict and if perform any change then we will get runtime exception saying
+"noSuchMethodError:main".
+
+Even though above syntax is very strict the following changes are acceptable.
+1)instead of public static we can take static public i.e the order of modifiers is not important.
+2)we can declare string array in any acceptable form:    public static void main(String[] args);
+                                                         public static void main(String []args);   
+                                                         public static void main(String args[]);                                                 public static void main(String args[]);
+3)Insead of args we can take any value java identifier:
+    Example:
+    public static void main(String[] suraj);
+4)We can declare string array with var arg parameter.
+    Example:
+    main(String... args);
+
+5)We can declare main method with the follwoing modifiers.
+    1)final
+    2)synchronized
+    3)strictfp;
+
+    Example:
+    public class p4 
+    {
+    public final synchronized strictfp static void main(String... args) 
+        {
+        System.out.println("Main is Working");
+        }
+    }
+
+    //this is valid main method
+
+Which of the followin main method declarations are valid?
+1)public static void main(String args);     //invalid
+2)public static void Main(String[] args);      //invalid capital 'M'
+3)public void main(String[] args);      //invalid
+4)public static int main(String []args);        //invalid
+5)final synchronized strictfp public void main(String[] args)   //invalid
+6)public final synchronized strictfp static void main(String[] args)   //valid
+7)public static void main(String[] args);       //valid
+
+In which of the above cases compile time error?
+Ans: We won't get compile time error anywhere but except last two cases in remaining we will get runtime exception saying "noSuchMethodError:main".
+
+
+Case 1:
+
+    Overloading of the main method is possible but JVM will always call string[] argument main method only the other overloaded method
+    we have to call explicitly like normal method call.
+
+    class Test
+    {
+        p s void main(String[] args)
+        {
+            Sopen("String[]");
+        }
+        p s void main(int[] args)
+        {
+            Sopen("int[]");
+        }
+    }
+
+Case 2 :
+    Inheritance concept applicable for main method hence while executing child class if child doesn't contain main method then parent class main method will be executed.
+    class P 
+    {
+        p s void main(String[] args)
+        {
+            Sopen("parent main");
+        }
+    }
+    Class C extends P 
+    {
+
+    }
+
+    // javac P.java
+    // java P     //parent main
+    // java C     //parent main
+
+Case 3:
+    class P 
+    {
+        p s void main(String[] args)
+        {
+            Sopen("parent main");
+        }
+    }
+    Class C extends P 
+    {
+        p s void main(String[] args)
+        {
+            Sopen("child main");
+        }
+    }
+    // javac P.java
+    // java P     //parent main
+    // java C     /child main   //data hiding concept
+
+    It seems overridding concept applicable for main method but it is not overridding and it is method hiding.
+    
+    Note: For main method Inheritance and overloaded concept are applicable but overridding concept is not applicable instead of overridding
+    method hiding is applicable.
+
+
+------------------------------------------------------------
+1.7 version Enhacements w.r.t main method:
+------------------------------------------------------------
+1)
+Until 1.6 version if class doesn't contain main method we will get runtime error as noSuchMethodError:main
+but from 1.7 version onwards instead of noSuchMethodError:main we will get more elaborated error information.
+
+
+2)
+From 1.7 version onwards main method is mandatory to start the program execution hence even thought class contain static block it won't be executed if the class
+doesn't contain main method.
+
+3) 1.6v Vs 1.7v.png
+
+**
+Q)Without writing main method is it possible to print some statement in console?
+Ans: Yes by using static block but this rule is applicable until 1.6 version but from 1.7 version onwards it is impossible to
+print some statement to the console without writing mainm method.
+
+//***********************this is done here*************************//
+
+
+
+
+
