@@ -1,0 +1,152 @@
+=========================================================================================================
+var-arg method  (variable-argument method)
+=================================================================================================
+
+Until 1.4 version we can't declare with variable number of arhuumner
+if there is achnge in number of argument compulsory we have to ho for new method
+and this increases length of the code and reduces readability.
+
+To overcome this problem sun people introduces var arg method in
+1.5 version which can take variable number of argumenr such type 
+of methods are called var-arg methods.
+
+We can declare a var arg method as follows m1(int... x);
+We can call this method by passing anynumber of int value including
+zero number.
+m1(int... x);
+m1(); //valid
+m1(10); //valid
+m1(1,1);     //valid
+m1(1,2,3,4);    //valid
+
+Example:
+
+class Test
+{
+    p s void m1(int... x)
+    {
+        Sopen("var-arg method");
+    }
+    p s void main(String[] args)
+    {
+        m1();   //var-arg method
+        m1(1,3);    //var-arg method
+        m1(2,3,4);  //var-arg method
+        m1(1,2,3,4);    //var-arg method
+    }
+}
+
+
+Internally var arg parameter will be converted into 1-D array.
+Hence within the var-arg method we can differenciate values by
+using index.
+
+Example:
+class Test
+{
+    p s void m1(int... x)   //consider this x as array
+    {
+        Sopen("Number of arguments are "+x.length);
+        int total=0;
+        for(int x1:x)
+        {
+            total+=x1;
+        }
+        Sopen("Sum is "+total);
+    }
+    p s void main(String[] args)
+    {
+        m1();   //0     Sum is 0
+        m1(1,3);    //2     sum is 4
+        m1(2,3,4);  //3     sum is 9
+        m1(1,2,3,4);    //4     sum is 10
+    }
+}
+
+LoopHoles:
+
+Case 1: 
+
+    Which of the following are valid var-arg methods:
+    m1(int... x);      //valid
+    m1(int ...x);   //valid
+    m1(int...x);    //valid
+    m1(int x...);   //invalid
+    m1(int. ..x);   //invalid
+    m1(int .x..);   //invalid
+
+Case 2:
+    /*we can mix var arg parameters with normal paramerter*/
+    m1(int x,int... y);   //valid
+    m1(String s, double... y);  //valid
+
+Case 3:
+    If we mix normal paramerter with var arg paramerter then var arg
+    paramerter should be last paramerter.
+
+    m1(double... d,String s);  //invalid
+
+Case 4:
+    Inside var arg method we can take only 1 var arg parameter and 
+    we can't take more than 1 var arg paramerter.
+    m1(int... x,double... d);   //invalid
+
+Case 5:
+    Inside a class we can't declare var arg method and corresponding 1-D array method
+    simontaneously other we will get compile time error.
+    class Test
+    {
+        p s void m1(int... x) //internally it is same as m1(int[] x); and we can't declare two methods with same signature un a single classs 
+        {
+
+        }
+        p s void m1(int[] x)
+        {
+
+        }
+    }
+    //ce 
+
+Case 6:
+    In gerneral var arg method will get least priority that is if no other method matched 
+    then only var arg method will get a chance it is exactly same as default case inside switch.
+    class Test
+    {
+        public static void m1(int... x)
+        {
+            Sopen("var - arg method");
+        }
+        public static void m1(int x)
+        {
+            Sopen("General method");
+        }
+        p s v main(String[] args)
+        {
+            m1();  //var-arg method
+            m1(10,20);  //var arg method
+            m1(10);   // General method
+        }
+    }
+
+case 7:
+    Equivalence between var arg parameter and 1-D array:
+    1) m1(int[] x) => m1(int... x)
+    2) main(String[] args) => m1(String... x);
+
+    case 1:
+    Whereever 1-D array present we can replace with var arg parameter i.e m1(int[] x) replaced with m1(int... x).
+    Example: 
+    main(String[] args) can be replaced with m1(String... x);
+
+    
+
+
+
+
+
+
+
+
+
+
+
