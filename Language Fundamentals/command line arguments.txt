@@ -1,0 +1,36 @@
+=======================================================================================================================
+Command line arguments
+================================================================================================================
+
+The arguments which are passing from command prompt are called command line argument with this command line argument JVM
+will create an array and by passing that array as argument JVM will call main method.
+
+The main objective of command line argument is we can customize behaviour of the main method.
+
+Withing main method command line argumnets are available in string form :
+Class Test
+{
+    p s void main(String[] args)
+    {
+        p s v main(String[] args)
+        {
+            Sopen(args[0]+args[1]);        //1020   
+        }
+    }
+}
+Java Test 10 20
+
+Usually space(" ") itself is the seperator between command line argument if our command line itself contains space then we have to enclose that
+command line argument within double quotes.
+
+class Test
+{
+    p s void main(String[] args)
+    {
+        Sopen(args[0]);   //Note Book
+    }
+}
+java Test "Note Book"
+
+
+//***********this is done here***********************//

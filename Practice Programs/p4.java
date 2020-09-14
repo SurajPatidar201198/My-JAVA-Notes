@@ -10,13 +10,21 @@
 //         System.out.println("Child class main");
 //     }
 // }
+// class Parent
+// {
+//     static
+//     {
+//         System.out.println("Static Block");
+//     }
+//     public static void main(String[] args) {
+//         System.out.println("Main Method");
+//     }
+// }
+
 class Parent
 {
-    static
-    {
-        System.out.println("Static Block");
-    }
     public static void main(String[] args) {
-        System.out.println("Main Method");
+        System.out.println(args[0]);
+        System.out.println(args[1]);
     }
 }
