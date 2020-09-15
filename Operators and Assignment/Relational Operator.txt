@@ -1,0 +1,24 @@
+======================================================================
+Relational Operator
+====================================================================
+
+1)We can apply Relational operator for every primitive type except boolean.
+    Example:
+        Sopen(10<20);   //true;
+        Sopen('a'<10);   //false
+        Sopen('a'<97.6);   //false
+        Sopen('a'>'A');    //true
+        Sopen(true>false);   //ce : operator > cannot be applied to boolean,boolean
+
+
+2)We can't apply relational operator for object types.
+    Example:
+        Sopen("durga123">"durga");    //ce: relation operator  > cannot be applied on object types
+
+
+3)Nesting of relational operators are not allowed otherwise we will get compile time error.
+    Example:
+        Sopen(10<20);  //true;
+        Sopen(10<20<30);   // Sopen(true<30);     //operator < cannot be applied on boolean ,int
+
+///////////////////************this is done here*****************////////////////

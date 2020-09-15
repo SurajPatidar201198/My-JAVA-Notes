@@ -1,0 +1,60 @@
+===============================================================================
+equality Operator(==)
+===============================================================================
+
+We can apply equality operator for every primitive type including boolean type also.
+
+Example:
+    Sopen(10==20);  //false
+    Sopen('a'=='b');    //false
+    Sopen('a'==97.0);  //true
+    Sopen(false==false);   //true
+
+
+Conclusions:
+
+1) We can apply equality operators for object types also.
+2) For object reference r1,r2  r1==r2 returns true if and only if both the 
+   references pointing to the same object.
+    Example:
+        Thread t1 = new Thread();
+        Thread t2 = new Thread();
+        Thread t3 = t1;
+        Sopen(t1==t2);   //false
+        Sopen(t1==t3);      //true
+
+3)If we apply equality operator for object types then compulosory there should be some relation between argument type 
+  either child to parent or parent to child or same type otherwise we will get ce saying incomprarble type.
+    Example: 
+        Thread t = new Thread();
+        Object o = new Object();
+        String s = new String("durga");
+        Sopen(t == o);      //false
+        Sopen(o == s);      //false
+        Sopen(s == t);      //compile time error : incomprarble type
+
+-----------------------------------------------------------------------
+Difference between == operator and equals() method
+-----------------------------------------------------------------------
+
+String s1 = new String("durga");
+String s2 = new String("durga");
+Sopen(s1==s2);          //false
+Sopen(s1.equals(s2));       //true
+
+In general we can use == operator for reference comparison (address comparison) and .equals() method for content comparison.
+
+
+Note: For any object reference r, r == null is always false but null==null is always true.
+    Example:
+    String s = new String("suraj");
+    Sopen(s==null);     //false
+
+
+    String s = null;
+    Sopen(s==null);    //true
+
+    Sopen(null==null);      //true
+
+
+//////////////********this is done here***********////////////
