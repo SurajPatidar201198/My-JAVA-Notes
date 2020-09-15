@@ -1,0 +1,88 @@
+=========================================================================================================
+Increment and Decrement Operators
+=========================================================================================================
+
+Increment:
+1)pre-Increment
+2)post-Increment 
+
+Decrement:
+1)pre-Decrement
+2)post-Decrement
+
+
+Refer : Increment and Decrement Table.png
+
+1)We can apply Increment and Decrement operators applicable only for variables but not for constant values.If we are 
+trying to apply for constant values then we will get compile time error.
+Example:
+    1) 
+    int x = 10;
+    int y = ++x;  //valid
+    Sopen(y);        
+    2)
+    int x = 10;
+    int y = ++10;  //invalid ce
+    Sopen(y); 
+
+2)Nesting of Increment and Decrement operators are not allowed.
+    Example:
+    int x = 10;
+    int y = ++(++x);    //ce:unexpected type required variable found: value
+    Sopen(x);
+
+3)For final variables we can't apply Increment and Decrement operators.
+    Example:
+    1)
+    final int x = 10;
+    x = 11;    //ce : cannot assign a value to final value : x
+    Sopen(x);
+
+    2)
+    final int x = 10;
+    x++;     //ce : cannot assign a value to final value : x
+    Sopen();
+
+4)We can apply increment and Decrement for every primitive type except boolean.
+    Example: 
+    int x = 10;
+    x++;
+    Sopen(x);
+
+
+    char ch = 'a';
+    ch++;       //vaid
+    Sopen(ch)    //O/P : 'b'
+
+    double d = 10.5;
+    d++;        //valid
+    sysout(d);  //O/P:  11.5
+
+    boolean b = true;
+    b++;   //ce: operator ++ is not applicable for boolean
+    sysout(b);
+
+5)Difference between b++ and b=b+1.
+    1)If we apply any arithmatic operator between two variable a and b the result type is always max of (int,type of a,type of b).
+    Example:
+    byte b = 10;
+    b = b+1;        //ce: possible loss of precision found:int but required byte, arithmetic operator return max(int,type of a,type of b) and byte cannot store int value so it will give error.
+    Sopen(b);
+
+    byte b = 10;
+    b++;            //valid in b++ internal type casting is performed that why we don't get ce   b++ = (b = (type of b)(b+1));
+    Sopen(b);
+
+    byte b = 10;
+    b = (byte)(b+1);    //valid
+    Sopen(b);
+
+
+----------------------this is done here----------------------------
+
+
+
+
+
+
+

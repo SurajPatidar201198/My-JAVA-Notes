@@ -1,0 +1,70 @@
+================================================================================================================
+Arithmatic Operators 
+=================================================================================================================
+
+1)If we apply any arithmetic Operators between two variable a and b the result type is always max(int,type of a,type of b).
+
+    byte --> short --> int --> long --> float --> double
+    char --> int --> long --> float --> double
+
+    byte + byte =  int
+    byte + short = int
+    short + short = int 
+    byte + long = long
+    long + double = double 
+    float + long = float 
+    char + char = int           sysout('a'+'b');  //97+98
+    char + double = double      sysout('a'+0.89);  //97.89
+
+2)Infinity : In integral arithmetic(byte,short,int,long) there is no way to represent infinity hence if infinity is the result we will get arithmetic exception in integral arithmetic.
+        Example:
+            Sysout(10/0);    //runtime exception
+            But in floating point arithmetic(float,double) there is a way to represent infinity for this Float and Double classes contains the following two constants.
+            1)POSITIVE_INFINITY
+            2)NEGATIVE_INFINITY
+            Hence even though result is infinity we won't get any arithmetic exception in floating point arithmetic.
+            Example:
+            sysout(10/10.0);   //Infinity
+            sysout(-10.0/0);    //-Infinity 
+
+    NaN(Not a Number): In integral arithmetic(byte,short,int,long) there is no way to represent undefined result hence if the results is undefined then we will get
+    saying arithmetic exception.
+        Example:
+            sysout(0/0);  //runtime exception
+
+            But in floating point arithmetic there is a way to represent undefined results for this float and double classes contain NaN constant. Hence if the result is undefined
+            we won't get any arithmetic exception in floating point arithmetic.
+            Example:
+            sysout(0.0/0);  //NaN
+            sysout(-0.0/0);   //NaN
+
+3)Note for any x value incluing NaN the following expresssion return false:
+    Sopen(10<Float.NaN);        //false
+    Sopen(10<=Float.NaN);       //false
+    Sopen(10>Float.NaN);        //false
+    Sopen(10>=Float.NaN);      //false
+    Sopen(10 == Float.NaN);     //false
+    Sopen(Float.NaN == Float.NaN);     //false
+
+    For any x value including NaN the following expresssion return true:
+
+    Sopen(10 != Float.NaN);     //true
+    Sopen(Float.NaN != Float.NaN);      //true
+
+
+----------------------------------------------------------------------------------------------
+Arithmatic Exceptions 
+----------------------------------------------------------------------------------------------
+
+1) It is runtime exception but not compile time error.
+2) It is possible only in integral arithmetic but not in floating point arithmetic.
+3) The only operators which cause arithmetic exception are / and %.
+
+
+
+
+
+
+
+
+
