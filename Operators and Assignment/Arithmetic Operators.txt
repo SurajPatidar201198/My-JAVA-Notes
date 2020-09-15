@@ -61,6 +61,7 @@ Arithmatic Exceptions
 3) The only operators which cause arithmetic exception are / and %.
 
 
+/***************this is done here**********************/
 
 
 

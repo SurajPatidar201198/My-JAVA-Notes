@@ -4,7 +4,7 @@ Operators and Assignment
 
 1)Increment and Decrement Operators
 2)Arithmetic Operators
-3)String Concatenation Operators
+3)String Concatenation Operator(+)
 4)Relational Operators
 5)equality Operators
 6)instanceof Operator

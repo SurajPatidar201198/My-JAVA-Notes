@@ -1,0 +1,32 @@
+======================================================================
+String concatenation operator(+)
+======================================================================
+
+The only overloaded operator in java is + operator sometimes it access arithmatic addition operation and sometimes its access 
+string concatenation operator.
+
+If atleast one argument is string type then + operator access concatenation operator and if both arguments are 
+number type then + operator arithmatic addition operator.
+
+Example 1:
+    String a = "suraj";
+    int b=10, c =20, d=30;
+    Sopen(a+b+c+d); //suraj102030
+    Sopen(b+c+d+a); //60suraj
+    Sopen(b+c+a+d); //30suraj30
+    Sopen(b+a+c+d)  //10suraj2030
+
+Example 2:
+    Consider the following declaration :
+    String a ="durga";
+    int b=10,c=20,d=30;
+
+    Which of the following expressions are valid?
+
+    1) a = b+c+d;       ce: incompatible type found int required string
+    2) a = a+b+c;       //valid
+    3) b = a+c+d;       ce: incompatible type found string required int
+    4) b = b+c+d;       //valid
+
+/////////////////*************this is done here**************/////////////////
+
