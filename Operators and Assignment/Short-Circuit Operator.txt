@@ -1,0 +1,40 @@
+=================================================================
+Short-Circuit Operator (&&, ||)
+=================================================================
+
+This are exactly same as bitwise operators (&,|).
+
+Difference between &,| and &&,|| :
+
+Refer: short-circuit1
+
+
+if(-------b1(10min)--------(&)---------b2(10min)---------)
+{
+
+}
+else
+{
+
+}
+
+Example 1:
+
+refer: short-curcuit-2.png
+
+Example 2:
+    int x = 10;
+    if(++x<10 && (x/0> 10))
+    {
+        Sopen("Hello");
+    }
+    else
+    {
+        Sopen("Hi");
+    }
+
+    1) CE;
+    2) RE:arithmetic exception
+    3) Hello
+    4) Hi            <----answer
+

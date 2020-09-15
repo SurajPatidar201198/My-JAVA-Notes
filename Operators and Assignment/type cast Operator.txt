@@ -1,0 +1,72 @@
+===================================================================
+type cast Operator
+==========================================================================================
+
+It is of 2 types:
+1) Implicit Type-Casting:
+    i) Compiler is responsible to perform implicit type Casting.
+
+    ii)Whenever we are assigning smaller data type value to bigger data type variable implicit type casting 
+    will be performed.
+
+    iii)It is also known as widening or upcasting.
+
+    iv)There is no loss of information in this type casting.
+
+    The following are various possible conversion where implicit type casting will be performed:
+    byte-->short-->int-->long-->float-->double.
+    char-->int-->long-->float-->double.
+
+    Example 1:
+    int x = 'a';    
+    Sopen(x);   //97   compiler converts char to int automatically by implicit type casting
+
+    Example 2:
+    double d = 10;
+    Sopen(d);     //10.0    compiler converts int to long automatically by implicit type casting
+
+2) Explicity Type-Casting:
+    i) Programmer is responsible to perform explicit type casting whenever we are assigning bigger data type value to smaller data type variable
+    then explicit type casting is required.
+    ii) It is also known as narrowing or downcasting.
+    iii) There may be a chance of loss of information in this type casting.
+
+    The following are various possibilities where explicit type casting is required :
+    byte<--short<--int<---long<---float<--double
+    char<--int<---long<---float<--double
+
+
+    Example 1:
+    int x = 130;
+    byte b = x;     //possible loss of precison found int required byte
+
+    byte b = (byte)x;
+    Sopen(b);    //-126 
+
+    Whenever we are assigning bigger data type value to smaller data type variable by explicit type casting
+    the most significant bit will be lost we have to consider only Least significant bits.
+
+    Refer : type_casting1.png
+
+    Example 2:
+     
+    int x = 150;
+    short s = (short)x;
+    Sopen(s);   // 150 
+
+    byte b = (byte)x;
+    Sopen(b);   // -106 
+
+    Refer : type_casting2.png
+
+    Example 3:
+    If we assign floating point value to the integral types by expliccit type casting the digits after the
+    decimal points will be lost.
+    double d = 130.234;
+    int x = (int)d;        
+    Sopen(x)        //130
+
+    byte b = (byte)d;
+    Sopen(b);       //-126
+
+/////////////////******************this is done here******************//////////////////

@@ -1,0 +1,49 @@
+===================================================================
+instanceof operator
+=============================================================
+
+We can use instanceof operator to check whether a given objrct is of particular type or not.
+
+Example:
+Object o = l.get(0);
+if( o instanceof Student)
+{
+    Student s = (Student)o;
+    //perform student specific functionality
+}
+else if(o instanceof Customer)
+{
+    Customer c = (Customer)o;
+    //perform customer specific functionality
+}
+
+------------------------------------------------------
+Syntax:
+-------------------------------------------------------
+
+r instanceof x
+
+r = Object reference
+x = class/interface name
+
+
+Example 1:
+    Thread t = new Thread();
+    Sopen(t instanceof Thread);         //true
+    Sopen(t instanceof Object);         //true
+    Sopen(t instanceof Runnable);       //true
+
+Example 2:
+    To use instanceof operator compulsory there should some relation between argument either child to parent or parent to child or same type otherwise
+    we will get ce saying inconvertible type.
+
+    Thread t = new Thread();
+    Sopen(t instanceof String);   //ce : inconvertible type found java.lang.Thread required java.lang.String
+
+
+Note: For any class or interface, null instanceof x is always false.
+    Example:
+    Sopen(null instanceof Thread);      //false
+    Sopen(null instanceof Runnable);   //false
+
+/*************************this is done here*****************************/

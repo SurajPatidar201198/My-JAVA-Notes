@@ -1,0 +1,55 @@
+=====================================================================
+Bitwise Operator (&,|,^)
+=========================================================================
+
+& ===> AND ===> return true if both arguments are true.
+
+| ===> OR  ===> return true if atleast one argument is true.
+
+^ ===> X-OR ===> Returns true if both arguments are different.
+
+Example:
+
+Sopen(true & false);    //false
+Sopen(true|false);      //true
+Sopen(true ^ false);    //true
+
+
+*Note :We can apply this operators for integral types also.
+
+    Sopen(4 & 5);   //4      i.e  100 & 101 = 100
+    Sopen(4 | 5);   //5     i.e   100 | 101 = 101
+    Sopen(4 ^ 5);   //1      i.e   101 ^ 101 = 001
+
+
+------------------------------------------------------------------------------------
+Bitwise Complement Operator (~)
+-----------------------------------------------------------------------------
+We can apply this operator only for integral type but not for boolean type if we are trying to apply for boolean type then we will get
+compile time error.
+
+Sopen(~true);   //ce: operator ~ cannot be appplied to boolean types
+
+Sopen(~4);   //its answer is not 3. Refer Bitwise1.png
+
+Note* : The most signifcant bit access sign bit 0 means positive 1 means negative number, postive number will be represent directly in the memory whereas
+negative number are represented indirectly in the memory that is in 2's complement.
+
+-----------------------------------------------------------------------------------
+Boolean Complement Operator(!)
+------------------------------------------------------------------------------------
+We can apply this operator only for boolean type but not for integral type.
+Example:
+    Sopen(!4);   //ce: operator ! cannot be applied to int 
+    Sopen(!false);   //true
+
+
+
+---------------------------------------
+Summary
+-----------------------------------------
+Refer : BitwiseEnd.png
+
+
+
+/*********************this ends here*/***************************//////
