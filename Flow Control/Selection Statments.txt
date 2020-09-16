@@ -1,0 +1,108 @@
+======================================================
+Selection Statements
+======================================================
+
+1) if-else
+
+    Syntax:
+        if(b)   //b should be boolean type
+        {
+            action: if b is true
+        }
+        else
+        {
+            action if b is false
+        }
+
+    The argument to the if Statement shoud be boolean type by mistake if we are trying 
+    to provide any other type then we will get compile time error.
+
+    int x = 0;
+    if(x)       //ce: incompatible type found int required boolean
+    {
+        Sopen("Hello");
+    }
+    else
+    {
+        Sopen("Hi");
+    }
+
+    int x = 10;
+    if(x = 20)      //ce
+    {
+        Sopen("Hello);
+    }
+    else
+    {
+        Sopen("hi");
+    }
+
+    int x = 10;
+    if(x==20)
+    {
+        Sopen("Hello");
+    }
+    else
+    {
+        Sopen("hi");
+    }
+    //hi
+
+    boolean b=true;
+    if(b=false)
+    {
+        Sopen("Hello");
+    }
+    else
+    {
+        Sopen("Hi");
+    }
+    //Hi
+
+    boolean b=false;
+    if(b==false)
+    {
+        Sopen("Hello");
+    }
+    else
+    {
+        Sopen("Hi");
+    }
+    //Hello
+
+*Note : else part and {} are optional without  {} only 1 Statement is allowed which should not be declarative statment.
+
+
+1)
+    if(true)
+        Sopen("Hello");
+
+    //Hello
+
+2)
+
+    if(true);    //valid
+
+3)
+    if(true)
+        int x = 10;
+
+    //compile time error
+
+4)
+    if(true)
+    {
+        int x = 10;
+    }
+    //valid compiles fine
+
+
+Note: ; is a valid java statment which is also known as empty statement.
+
+Note: There is no dangling else problem in java.Every else is mapped to the nearest if statement.
+Example:
+if(true)        //first if
+    if(true)        //second if
+        Sopen("Hello");
+else                                //this else is related to second if
+    Sopen("Hi");
