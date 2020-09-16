@@ -2,7 +2,9 @@
 Selection Statements
 ======================================================
 
+====================================================================
 1) if-else
+=====================================================================
 
     Syntax:
         if(b)   //b should be boolean type
@@ -70,39 +72,257 @@ Selection Statements
     }
     //Hello
 
-*Note : else part and {} are optional without  {} only 1 Statement is allowed which should not be declarative statment.
+    *Note : else part and {} are optional without  {} only 1 Statement is allowed which should not be declarative statment.
 
 
-1)
-    if(true)
-        Sopen("Hello");
+    1)
+        if(true)
+            Sopen("Hello");
 
-    //Hello
+        //Hello
 
-2)
+    2)
 
-    if(true);    //valid
+        if(true);    //valid
 
-3)
-    if(true)
-        int x = 10;
+    3)
+        if(true)
+            int x = 10;
 
-    //compile time error
+        //compile time error
 
-4)
-    if(true)
-    {
-        int x = 10;
-    }
-    //valid compiles fine
+    4)
+        if(true)
+        {
+            int x = 10;
+        }
+        //valid compiles fine
 
 
-Note: ; is a valid java statment which is also known as empty statement.
+    Note: ; is a valid java statment which is also known as empty statement.
 
-Note: There is no dangling else problem in java.Every else is mapped to the nearest if statement.
+    Note: There is no dangling else problem in java.Every else is mapped to the nearest if statement.
+    Example:
+    if(true)        //first if
+        if(true)        //second if
+            Sopen("Hello");
+    else                                //this else is related to second if
+        Sopen("Hi");
+
+
+============================================================================
+2) Switch :
+==================================================================================
+
+If several options are avialable then it is not recommended to use nested if-else because it reduces readibility.
+To handle this requirement we should go for switch statment.
+
+Syntax:
+switch(x)
+{
+    case 1:
+        Action - 1;
+        break;
+    case 2:
+        Action - 2;
+        break;
+    default :
+        default action;
+}
+
+The allowed argument types for the switch statement are byte,short,char,int until 1.4 version but from 1.5 version onwards corresponding wrapper classes and enum
+type also allowed from 1.7 version String type is also allowed.
+
+{} are manadatory except switch everywhere {} are optional.
+
+Both case and default are optional i.e an empty switch statment is a valid java syntax.
 Example:
-if(true)        //first if
-    if(true)        //second if
-        Sopen("Hello");
-else                                //this else is related to second if
-    Sopen("Hi");
+    int x = 10;
+    switch(x)
+    {
+
+    }
+    //valid
+
+#) Inside switch every statement should under some case or default i.e independent statment are not allowed in switch.Otherwise
+we will get compile time error.
+
+    Example:
+        int x = 10;
+        switch(x)
+        {
+            Sopen("Hello");
+        }
+        //invalid ce
+
+#) Every case label should be compile time constant(constant expression).
+
+    Example:
+    int x = 10;
+    int y = 20;
+    switch(x)
+    {
+        case 10:
+            Sopen(10);
+            break;
+        case y:         //invalid ce : saying constant expression required
+            Sopen(20);
+            break;
+    }
+
+    if we declare y as final then we won't get any compile time error.
+            Example:
+            int x = 10;
+            final int y = 20;
+            switch(x)
+            {
+                case 10:
+                    Sopen(10);
+                    break;
+                case y:         //valid
+                    Sopen(20);
+                    break;
+            }
+
+#)Both switch argument and case label can be expressions but case label should be constant expression.
+    int x = 10;
+    switch(x+1)
+    {
+        case 10:
+            Sopen(10);
+            break;
+        
+        case 10+20+30:
+            Sopen(60);
+    }
+
+    //valid
+
+#) Every case label should be in range of switch argument type otherwise we will be compile time error.
+    Example:
+        byte b = 10;
+        switch(b)   //cases should be in range of b type
+        {
+            case 10:
+            Sopen(10);
+            break;
+
+            case 100:
+                Sopen(100);
+                break;
+            
+            case 1000:      //PSP found int required byte
+                Sopen(1000);
+        } 
+        //not valid
+
+    Example:
+        byte b = 10;
+        switch(b+1)         //here switch argument become int type
+        {
+            case 10:
+                Sopen(10);
+                break;
+
+            case 100:
+                Sopen(100);
+                break;
+            
+            case 1000:
+                Sopen(1000);
+        }
+        //valid
+
+#) duplicates case labels are not allowed otherwise we will get compile time error.
+    Example:
+    int x = 10;
+    switch(x)
+    {
+        case 97:
+            Sopen(97);
+            break;
+        
+        case 98:
+            Sopen(98);
+            break;
+
+        case 'a':           //it is similar to case 97:
+            Sopen("A");
+    }
+    //ce:
+
+
+Case Label Summary:
+1)It should be constant expression.
+2)The value should be in the range of switch argument type.
+3)Duplicate case labels are not allowed.
+
+------------------------------------------------------------------------
+Fall-through inside switch
+-------------------------------------------------------------------------
+
+Within the switch if any case is matched from that case on all statements will be executed until break or end of the 
+switch this is called fall through inside switch.
+The main advantage of fall through inside switch is we can define common action for multiple cases (code reuseibility).
+
+Example:
+    switch(x)
+    {
+        case 1:
+        case 2:
+        case 3:
+            Sopen("Quar 1");
+        case 4:
+        case 5:
+        case 6:
+            Sopen("Qua 2");
+        .
+        .
+        .
+    }
+
+Example:
+    switch(x)
+    {
+        case 0:
+            Sopen(0);
+        case 1:
+            Sopen(1);
+            break;
+        case 2:
+            Sopen(2);
+        default:
+            Sopen("Def");
+    }
+
+    At x = 0 : 0 1
+    At x = 1 : 1
+    At x = 2 : 2 def
+    At x = 3 : def
+
+-----------------------------------------------------------
+default case
+-----------------------------------------------------------
+1)Within the switch we can take default case atmost once.
+2)default case will be executed if and only if there is no case matched.
+3)Within the switch we can write default case anywhere but it is recommended but it is recommended to write as last case.
+
+switch(x)
+{
+    default:
+        Sopen("Def");
+    case 0:
+        Sopen("0");
+        break;
+    case 1:
+        Sopen(1);
+    case 2:
+        Sopen(2);
+}
+
+x=0 , 0
+x=1 , 1 2
+x=2 , 2
+x=3 , def 0
+
+
