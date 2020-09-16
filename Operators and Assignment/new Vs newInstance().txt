@@ -1,3 +1,118 @@
 ===============================================================================================
 new Vs newInstance()
 ===============================================================================================
+
+We can use new operator to create an object if we know class name at the beginning.
+Example:
+Test t = new Test();
+Student s = new Student();
+Customer c = new Customer();
+
+newInstance() is a method present in the class Class. We can use newInstance() method to create
+object if we don't know class name at the beginning and it is available dynamically at run time.
+
+class Student
+{
+
+}
+Class Customer
+{
+
+}
+class Test
+{
+    public static void main(String[] args) throws Exception 
+    {
+        Object o = Class.forName(args[0]).newInstance();
+        System.out.println("Object created for :"+o.getClass().getName());
+    }
+}
+java Test Student
+//Object created for Student
+java Test Customer
+//Object created for Customer
+java Test java.lang.String
+//Object created java.lang.String
+
+In the case of new operator based on our requirement we can invoke any constructor.
+Example:
+Test t = new Test();
+Test t = new Test(20);
+
+But newInstance() method internally no argument constructor hence to use newInstance() method
+compulsory corresponding should contain no argument constructor otherwise we will get 
+instantiation Exception.
+
+
+Difference betweeen 
+
+While using new operator at runtime if corresponding .class file is not available then we will
+get runtime Exception saying "noCLassDefFound".
+EXAMPLE:
+Test t = new Test();
+
+At runtime if Test class .class file no found then it will give error as noCLassDefFound.
+
+While using newInstance() method at runtime if corresponding .class file not available then we will get
+runtime exception saying classNotFoundException.
+Example:
+
+Object o = Class.forName(args[0].newInstance();
+java Test Test123
+
+At runtime if test123 is not available then we will get runtime exception saying ClassNotFoundException : Test123 
+
+--------------------------------------------------------
+difference b/w new and newInstance
+---------------------------------------------------------
+Refer : difference bw new and newInstance.png
+
+
+--------------------------------------------------------------------------------
+difference between classNotFoundException and noCLassDefFoundError
+------------------------------------------------------------------------------------
+
+For hardcoded class name, at runtime if corresponding .class file not available then we will get runtime 
+exception saying noCLassDefFoundError which is unchecked.
+Example:
+
+Test t = new Test();
+
+At runtime if Test.class file not available then we will get runtime exception saying noCLassDefFoundError:Test
+
+For dynamically provided class name at runtime if the corresponding .class file not available then we will get runtime 
+exception saying class not found exception, which is checked exception.
+
+Object o = Class.forName(args[0]).newInstance();
+
+java test Student
+At runtime if Student.class file not available then we will get runtime exception saying classNotFoundException:Student
+
+-----------------------------------------------------------------------------------------
+instanceof  VS isInstance()
+-----------------------------------------------------------------------------------------
+instanceof is an operator in java we can use instanceof of to check whether the given object is of particular type or not
+we know type at the beginning.
+Example:
+Thread t = new Thread();
+Sopen(t instanceof Runnable);  //true
+Sopen( t instanceof Object);  //true
+
+isInstance() is a method present in java.lang.Class we can use isInstance() method to check whether a given object is of particular
+type or not and we don't know the type at beginning and it is available dynamically at the runtime.
+
+class Test
+{
+    p s v main(String[] args)
+    {
+        Thread t = new Thread();
+        Sopen(Class.forName(args[0]).isInstance(t));
+    }
+}
+
+java Test Runnable    //true.
+java Test String       //false.
+
+isInstance() method is method equivalent of instanceof operator.
+
+//////////************this ends here ****************/////////
