@@ -1,3 +1,66 @@
 =============================================================================
 Assignment operators
 ========================================================================
+
+There are 3 typed of assignment operators:
+1)Simple assignment:
+    Example: 
+    int x = 10;
+
+2)Chained Assignment:
+    Example:
+    int a,b,c,d;
+    a=b=c=d=20;
+    Sopen(a+"..."+b+".."+c+"..."+d);   // 20...20..20...20
+
+    Example:
+    int a = b = c = d = 19;    ce error //we can't perform chained assignment directly at the time of declaration 
+
+    Example: 
+    int b,c,d;
+    int a = b=c=d=20;  //valid
+
+3)Compound assignment operator:
+    Sometimes assignment operator mixed with some other operator such type of assignment operator are called compound assignment operator.
+    Example:
+    int a = 10;
+    a+=20;
+    Sopen(a);  //30;
+
+    The following are all possible compound assignment operators in java:
+    1)+=
+    2)-=
+    3)*=
+    4)/=
+    5)%=
+
+    6)&=
+    7)|=
+    8)^=
+
+    9)>>=
+    10)>>>=
+    11)<<=
+
+    byte b = 10;
+    b= b+1;         //ce: PSP found int required byte    
+    Sopen(b);
+
+    byte b = 10;
+    b++;            //valid
+    Sopen(b);       //11
+
+    byte b = 10;
+    b+=1;       //b=(byte)(b+1);   this will not give ce read below to remove your confusion
+    Sopen(b);
+
+    In the case of compound assignment operator internal type casting will be performed automatically.
+
+
+Example:
+
+int a,b,c,d;
+a=b=c=d=20;
+a+=b-=c*=d/=2;
+Sopen(a+".."+b+".."+c+".."+d);   //-160..-180..200..10
+

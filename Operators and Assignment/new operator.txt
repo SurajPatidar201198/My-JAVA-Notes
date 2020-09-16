@@ -1,0 +1,16 @@
+=============================================================================
+new operator
+=============================================================================
+
+We can use new operator to create object.
+Example:
+Test t = new Test();
+
+Note:
+1)After creating an object constructor will be executed to perform initializatoin
+of object hence constructor is not for creation of object and it is for initialization of
+an object.
+
+2)In java we have only new keyword but not delete keyword but destruction of useless object 
+is the responsibility of garbage collector.
+
