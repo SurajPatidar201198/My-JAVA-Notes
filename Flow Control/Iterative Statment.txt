@@ -1,0 +1,499 @@
+==========================================================================================================
+Iterative Statement
+==========================================================================================================
+
+-------------------------------------------
+While
+-------------------------------------------
+#) If we don't know number of iterations in advance then we should go for while loop.
+    Example:
+    While(rs.next())
+    {
+
+    }
+
+    While(e.hasmoreElements())
+    {
+
+    }
+
+    While(its.hasNext())
+    {
+
+    }
+
+#) Syntax :
+    while(b)
+    {
+        /*Action*/
+    }
+
+    The argument should be boolean type if we are trying to provide any other type then we will get
+    compile time error.
+
+    while(1)    //ce: incompatible type found int required boolean
+    {
+        Sopen("Hello");
+    }
+    //ce
+
+#) {} are optional and without {} we can take only one statement under while which should not be declarative statement. 
+    while(true)
+    {
+        Sopen("Hello");
+    }
+    //valid
+
+    while(true);
+    //valid
+
+    while(true)
+        int x = 10;
+    //invalid
+
+    while(true)
+    {
+        int x = 10;
+    }
+    //valid
+
+#) 
+    Example:
+    while(true)
+    {
+        Sopen("Hello");
+    }
+    Sopen("Hi");        //ce: unreachable statement, unreachable statement are not allowed in java
+    //invalid
+
+    while(false)
+    {
+        Sopen("Hello");     //ce: unreachable statement, unreachable statement are not allowed in java
+    }
+    Sopen("Hi");
+    //invalid
+
+    int a = 10, b=20;
+    while(a<b)            //compiler will only check whether ( ) inside statement is valid boolean type or not
+    {
+        Sopen("Hello");
+    }
+    Sopen("Hi");
+    //valid         infinte time Hello will be printed,JVM will not check unreachability
+
+    int a = 10, b=20;
+    while(a>b)
+    {
+        Sopen("Hello");
+    }
+    Sopen("Hi");
+    //valid        Hi
+
+    final int a = 10, b=20;
+    while(a<b)
+    {
+        Sopen("Hello");
+    }
+    Sopen("Hi");        //unreachable statement
+    //invalid
+
+
+    final int a = 10, b=20;
+    while(a>b)
+    {
+        Sopen("Hello");         //unreachable statement
+    }                       
+    Sopen("Hi");
+    //invalid
+
+Note :
+    1)Every final variable will be replaced by the value at the compile time only.
+        final int a = 10;
+        int b = 20;
+        Sopen(a);  =========================after compilation==========>Sopen(10);
+        Sopen(b);       ===================after compilation============>Sopen(b);
+
+    2)If every argument is a final variable(compile time constant) then that operation should be performed at the compile time only.
+        final int a=10,b=20;
+        int c = 20;
+        Sopen(a+b);       ==========after compilation==============> Sopen(30);
+        Sopen(a+c);         ==========after compilation==============>Sopen(10+c);
+        Sopen(a<b);         ==========after compilation==============>Sopen(true);
+        Sopen(a<c);       ==========after compilation==============>Sopen(10<c);
+    
+    
+
+    
+------------------------------------------------------
+do-while()
+------------------------------------------------------
+If we want to execute loop body atleast once then we should go for do while.
+
+Syntax:
+do
+{
+
+}while(b);
+
+; ===> is mandatory
+b should be boolean type
+
+#) {} are optional and without {} we can take only one statement between do and while which should not be a declarative statement.
+    Example:
+        do
+            Sopen("Hello");
+        while(true);
+        //valid
+
+        do;                     //; is a valid java statement
+        while(true);
+        //valid
+
+        do
+            int x = 10;
+        while(true);
+        //valid
+
+        do
+        {
+            int x = 10;
+        }
+        while(true);    
+        //valid
+
+        do                  //compulsory between do and while we have to take atleast one statement
+        while(true);
+        //invalid
+    
+Tell whether given below code is valid or invalid?
+
+    do while(true)
+    Sopen("Hello");
+    while(false);
+
+    //valid
+
+    Exaplaination:
+
+    do
+        while(true)     //this line and below Sopen("Hello") line is a part of single while statment and if you are thinking that while(false) is unreachable but its not so as do-while() is a single statement and it is already intered in do statement and that is a part of while too.
+            Sopen("Hello");
+    while(false);
+
+    **
+
+    do
+    {
+        Spoen("Hello");
+    }while(true);
+    Sopen("Hi");        //unreachable statement
+    //invalid 
+
+    **
+
+    do
+    {
+        Sopen("Hello");
+    }
+    while(false);
+    Sopen("Hi");
+    //valid
+
+    **
+
+    int a = 10,b=20;
+    do
+    {
+        Sopen("Hello");
+    }while(a<b);
+    Sopen("Hi");        
+    //valid
+
+    **
+
+    int a = 10,b=20;
+    do
+    {
+        Sopen("Hello");
+    }while(a>b);
+    Sopen("Hi");
+    //valid
+
+    **
+
+    final int a = 10,b=20;
+    do
+    {
+        Sopen("Hello");
+    }while(a<b);
+    Sopen("Hi");      //unreachable statement
+    //invalid
+
+    **
+
+    final int a = 10,b=20;
+    do
+    {
+        Sopen("Hello");
+    }while(a>b);
+    Sopen("Hi");
+    //valid
+
+------------------------------------------------------
+for loop
+------------------------------------------------------
+For loop is the most commonly loop in java if we know number of interation in advance then for loop
+is  a best choice.
+
+for(initilization ; condition-check ; increment-decrement_section)
+{
+    //loop body
+}
+
+Execution order:
+1) initilization
+2) condition-check
+3) loop body
+3) increment-decrement_section
+
+#) {} are optional and without {} we can take only 1 statement under for loop which should not be declarative statment.
+    Example:
+        for(int i=0;true;i++)
+            Sopen("Hello");
+        //valid
+
+        for(int i=0;i<10;i++);
+        //valid
+
+        for(int i=0;i<10;i++)
+            int x =110;
+        //invalid
+
+#) initilization section:
+    This part will be executed only once in loop life cycle.
+    Here we can declare and initialize local variables of for loop.
+    Here we can declare any number of variable but should be of the same type by mistake if we are trying
+    to declare different data type variable then we will get ce.
+
+    int i=0,j=0;  //valid
+    int i=0,String s = "suraj";   //invalid
+    int i=0,int j=0;   //invalid
+
+    int i=0;
+    for(Sopen("Hello boss U R sleeping");i<3;i++)
+    {
+        Sopen("No boss u r sleeping");
+    }
+    //Hello boss U R sleeping
+      No boss u r sleeping
+      No boss u r sleeping
+      No boss u r sleeping
+    
+    Note: In the initialization section we can take any valid java statement including Sopen().
+
+#) conditional-check:
+    Here we can take any valid java expression but should be of the type boolean This
+    part is optional and if we are not taking anything then compiler will place 
+    true.
+
+#) increment-decrement_section:
+    In the increment-decrement_section we can take any valid java statement
+    including Sopen().
+
+    Example:
+
+        int i=0;
+        for(Sopen("Hello");i<3;Sopen("Hi"))
+        {
+            i++;
+        }
+        o/p: Hello 
+            Hi
+            Hi
+            Hi
+
+*Note: 
+    All three parts of for loop are independent of each other and optional .
+    Example:
+        for(; ;)
+        {
+            Sopen("Hello");
+        }
+        //infinte loop
+
+        for(; ;);
+        //infinte loop
+
+#) 
+
+    for(int i=0;true;i++)
+    {
+        Sopen("Hello");
+    }
+    Sopen("Hi");    //unreachable statemet
+    //invalid
+        
+    for(int i=0;false;i++)
+    {
+        Sopen("Hello");     //unreachable statement
+    }
+    Sopen("Hi");
+    //invalid
+
+    for(int i=0;;i++)
+    {
+        Sopen("Hello");     
+    }
+    Sopen("Hi");        //unreachable statement
+    //invalid
+
+    int a =10,b=20
+    for(int i=0;a<b;i++)
+    {
+        Sopen("Hello");
+    }
+    Sopen("Hi");
+    //valid
+
+    int a =10,b=20
+    for(int i=0;a>b;i++)
+    {
+        Sopen("Hello");
+    }
+    Sopen("Hi");
+    //valid
+
+    final int a =10,b=20
+    for(int i=0;a<b;i++)
+    {
+        Sopen("Hello"); 
+    }
+    Sopen("Hi");        //unreachable statement
+    //invalid
+
+
+    final int a =10,b=20
+    for(int i=0;a>b;i++)
+    {
+        Sopen("Hello");     //unreachable statement
+    }
+    Sopen("Hi");
+
+------------------------------------------------------------------------------
+for-each loop (Enhanced for loop)
+-----------------------------------------------------------------------------
+
+Introduced in 1.5version it is specially designed loop to retrive elements of arrays and collections.
+
+Example 1:
+    To print elements of one-dimensional array:
+    int[] x = {10,20,30,40}
+    Normal for loop:
+    for(int i=0;i<x.length;i++)
+    {
+        Sopen(x[i]);
+    }
+
+    Enhanced for loop:
+    for(int x1:x)
+    {
+        Sopen(x1);
+    }
+
+Example 2:
+    To print elements of 2-D array:
+    int[][] x = {{10,20,30},{40,50}};
+
+    Normal for loop:
+    for(int i=0;i<x.length;i++)
+    {
+        for(int j=0;j<x[i].length;j++)
+        {
+            Sopen(x[i][j]);
+        }
+    }
+
+    Enhanced for loop:
+    for(int[] x1:x)
+    {
+        for(int x2:x1)
+        {
+            Sopen(x2);
+        }
+    }
+    
+Example 3:
+    To print elements of 3-D array:
+
+    for(int[][] x1:x)
+    {
+        for(int[] x2:x1)
+        {
+            for(int x3:x2)
+            {
+                Sopen(x3);
+            }
+        }
+    }
+
+#)
+    for-each loop is the best choice to retrive elements of arrays and collection but
+    its limitation is it is applicable only for arrays and collection and it is not a 
+    general purpose loop.
+
+    Write equivalent for each loop for this normal loop:
+    for(int i=0;i<10;i++)
+    {
+        Sopen("Hello");
+    }
+    //can't possible, we can't write equivalent for each loop directly.
+
+#) By using normal for loop we can print array element either in normal order of reverse order,
+   but by using for each loop we can print array elements only in orignal order but not in 
+   reverse order.
+
+   int[] x = {10,20,304,44};
+   for(int i=x.length-1;i>=0;i--)
+   {
+       Sopen(x[i]);
+   }
+   O/P: 44,304,20,10
+   we can't write an equivalent for-each loop directly
+
+-----------------------------------------------------------------------
+Iterable
+---------------------------------------------------------------------------
+
+for(eachitem a : target)
+{
+
+}
+//target : Arrray/collection
+//target should be iterable object
+
+The target element in for-each loop should be iterable object.
+An object is said to be iterable if and only if corresponding 
+class implements java.lang.Iterable interface.
+
+Iterable interface is Introduced in 1.5version and it contains
+only one method i.e iterator.
+public Iterator iterator()
+
+So all array related classes and collection implemented classes already implemented 
+iterable interface.
+
+Being a programmer we are not required to do anything just we should 
+aware the point.
+
+---------------------------------------------------------------------------------
+Differences between iterator and iterable
+----------------------------------------------------------------------------
+Refer : Difference between Iterator and Iterable.png
+
+
+///////////////*******************this ends here**************************///////////////////////
+
+
+
+
+
