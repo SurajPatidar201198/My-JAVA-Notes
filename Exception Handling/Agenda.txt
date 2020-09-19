@@ -23,4 +23,3 @@ Agenda
 20)1.7 vesion enhancements
     1.try with resources
     2.multi-catch block
-21)
