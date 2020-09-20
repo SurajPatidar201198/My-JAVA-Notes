@@ -1,0 +1,30 @@
+===============================================================================================
+Control flow in try catch
+===============================================================================================
+try
+{
+    statement 1;
+    statement 2;
+    statement 3;
+}
+catch
+{
+    statement 4;
+}
+statement 5;
+
+Case 1: If there is no exception: 1,2,3,5  Normal Termination
+
+Case 2: If an exception rised at statement2 and corresponding catch block matched. 1,4,5  Normal Termination
+
+Case 3: If an exception rised at statement2 and corresponding catch block not matched. 1, abnormal termination
+
+Case 4: If an exception rised at statement4 or statement5 then it is always abnormal termination.
+
+*Note: Within the try block if any where exception rised then rest of the try block won't be executed even 
+though we handled the exception.Hence withing the try block we have to take only risky code and length of try
+block as less as possible.
+
+*Note: In addition to try block there may be a chance of rising exception inside catch and finally block.
+
+*Note: If any statement which is not part of try block and rises an exception then it is always abnormal termination.

@@ -1,0 +1,106 @@
+==============================================================================================================================
+Default exception handling in java
+=========================================================================================================================
+1)Inside a method if any exception occurs, the method in which it is rised is responsible to create 
+exception object by including the following information.
+    i)Name of exception
+    ii)Description of exception
+    iii)Location at which exception occurs(stack trace)
+
+2)After creating exception object method handovers that object to the JVM.
+3)JVM will check whether the method contains any exception handling code or not if the method doesn't
+contain exception handling code then jvm terminates that method abnormally and removes corresponding
+entry from stack.
+4)Then JVM identifies caller method and checks whether caller method contain any handling code or not.
+5)If the caller method doesn't contain handling code then JVM terminates that caller method also abnormally and
+removes the corresponding entry from stack abnormally.
+6)This process will be continued until main method and if the main method also doesn't contain 
+handling code then JVM terminates main method also abnormally and removes corresponding entry
+from the stack.
+7)Then JVM handovers responsiblility of exception handling to default exception handler, which is the
+part of JVM.
+8)Default exception handler prints exception information in the following format and terminates program
+abnormally.
+
+Example:
+    
+public class p6
+{
+    public static void main(String[] args) {
+        doStuff();
+    }
+    static void doStuff()
+    {
+        doMoreStuff();
+    }
+    static void doMoreStuff()
+    {
+        // System.out.println("doMoreStuff running");
+        System.out.println(10/0);
+    }
+}
+
+Output: 
+
+Exception in thread "main" java.lang.ArithmeticException: / by zero     "xxx" in place of main becuase there maybe any thread
+        at p6.doMoreStuff(P6.java:13)
+        at p6.doStuff(P6.java:8)
+        at p6.main(P6.java:4)
+
+
+Example:
+public class p6
+{
+    public static void main(String[] args) {
+        doStuff();
+    }
+    static void doStuff()
+    {
+        doMoreStuff();
+        System.out.println(10/0);
+    }
+    static void doMoreStuff()
+    {
+        System.out.println("Hello");
+    }
+}
+
+Output:
+Hello
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at p6.doStuff(P6.java:9)
+        at p6.main(P6.java:4)
+
+//here in above program only 2 methods terminated abnormally.
+
+Example:
+public class p6
+{
+    public static void main(String[] args) {
+        doStuff();
+        System.out.println(10/0);
+    }
+    static void doStuff()
+    {
+        doMoreStuff();
+        System.out.println("Hii");;
+    }
+    static void doMoreStuff()
+    {
+        System.out.println("Hello");
+    }
+}
+Output:
+Hello
+Hii
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at p6.main(P6.java:5)
+//here in above program only 1 method terminated abnormally if a single method is terminated
+abnormally then we can say that whole program is terminated abnormally.
+
+Note: In a program atleast one method terminated abnormally then the program termination is 
+abnormal termination if all methods terminated noramlly then only program termination is normal 
+termination.
+
+
+

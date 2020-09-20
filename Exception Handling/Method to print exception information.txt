@@ -1,0 +1,82 @@
+=====================================================================================================
+Method to print exception information
+=====================================================================================================
+There are 3 methods to print exception information.
+Throwable class defines the follwing methods to print exception information.
+
+Method                                                       printable Format
+
+1)printStackTrace()                                     Name of exception: description stack printStackTrace
+2)toString()                                            Name of execution: description
+3)getMessage()                                          description
+
+Example 1: printStackTrace()
+
+public class p6
+{
+    public static void main(String[] args) {
+        System.out.println("Start");
+        try
+        {
+            System.out.println(10/0);
+        }
+        catch(ArithmeticException e)
+        {
+            e.printStackTrace();                //printStackTrace() method used
+        }
+        System.out.println("End");
+    }
+}
+Ouput:
+Start
+java.lang.ArithmeticException: / by zero
+        at p6.main(P6.java:13)
+End
+
+
+
+
+Example 2: toString()    or   direct printing
+
+public class p6
+{
+    public static void main(String[] args) {
+        System.out.println("Start");
+        try
+        {
+            System.out.println(10/0);
+        }
+        catch(ArithmeticException e)
+        {
+            System.out.println(e);          //toString() or direct printing
+        }
+        System.out.println("End");
+    }
+}
+Ouput:
+Start
+java.lang.ArithmeticException: / by zero
+End
+
+Example 3: getMessage()
+
+public class p6
+{
+    public static void main(String[] args) {
+        System.out.println("Start");
+        try
+        {
+            System.out.println(10/0);
+        }
+        catch(ArithmeticException e)
+        {
+            System.out.println(e.getMessage());     //getMessage() used
+        }
+        System.out.println("End");
+    }
+}
+Ouput:
+/ by zero
+
+Note: Internally defualt exception handler uses printStackTrace() method to print exception information to the console.
+

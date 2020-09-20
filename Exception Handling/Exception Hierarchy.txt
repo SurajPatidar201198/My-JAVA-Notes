@@ -1,0 +1,39 @@
+========================================================================================================================
+Exception Hierarchy
+=============================================================================================================
+
+1)Throwable class acts as root for java Exception Hierarchy.
+2)Throwable class defines two child classes 
+    1)Exception
+    2)Error
+
+----------------------------------
+Exception
+----------------------------------
+Most of the time exceptions are caused by our program and this are recoverable.For Example:
+If our programming requirement is to read the data from remote file located at london at 
+runtime if remote file is not available then we will get runtime exceptions saying file not 
+found exception.
+If fileNotFoundException we can provide local file and continue rest of the program normally.
+
+try
+{
+    //read data from remote file locating at london
+}
+catch(fileNotFoundException e)
+{
+    //use local file and continue rest of the program normally
+}
+
+----------------------------------
+Error
+----------------------------------
+Most of the times errors are not caused by our program and this are due to lack of system resources.
+Errors are non-recoverable.
+For Example:
+If OutOfMemoryError occurs being a programmer we can't do anything and the program will be terminated 
+abnormally system admin or server admin is responsible to increase help memnory.
+
+
+
+Refer flow chart : flowChart(1).png and flowChart(2).png

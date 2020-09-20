@@ -1,0 +1,30 @@
+=======================================================================================
+Introduction
+========================================================================================
+An unexpected unwanted event that distrurbs the normal flow of the program is called as Exception.
+Example:
+1)Type punchured Exception
+2)Sleeping exception 
+3)FileNotFoundException
+
+It is highly recommended to handle exception and the main objective of exception handling is graceful
+termination of the program.
+
+Exception handling doesn't mean repairing an exception we have to provide an alternative way to 
+continue rest of the program is the concept of exception handling.
+
+For Example : our programming requirement is to read the data from remote file locating at london
+at runtime is not available our program should not be terminated abnormally we have to provide
+some local file to continue rest of the program normally.This way of defining alternative is nothing
+but exception handling.
+
+Example:
+try
+{
+    //read data from remote file loacting at london
+}
+catch(FileNotFoundException e)
+{
+    //use local file and continue rest of the program normally
+}
+

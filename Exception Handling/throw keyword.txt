@@ -1,0 +1,131 @@
+=========================================================================================
+throw keyword
+=========================================================================================
+
+programmer ----->throws Exception object ------->JVM catches
+
+
+Sometime we can create exception object explicitly and we can handover to JVM manually for this we
+have to use throw keyword.
+
+throw new AE("/ by zero");
+
+creation of arithmatic object explicitly
+handover our created exception object  to the JVM manually
+
+Hence the main objective of throw keyword is to handover over our created exception object to JVM
+manually.
+
+Hence the result of below two programs is exactly same.
+
+class Test
+{
+     p s void mani(String[] args)
+     {
+         Sopen(10/0);
+     }
+}
+
+//re: Exception is thread "main" java.lang.AE: / by zero at Test.main();  in this case main method is reponsible to create
+//exception obeject and handover to the JVM
+
+class Test
+{
+     p s void main(String[] args)
+     {
+         thorow new ArithmaticException("/ by zero explicity");
+     }
+}
+//re: Exception is thread "main" java.lang.AE: / by zero explicitly  at Test.main(); in this case programmer is creating exception 
+//object explicitly and handover to the JVM manually.
+
+
+Note: best use of throw keyword is for user defined defined exception or customized exception.
+
+
+
+
+Case 1:
+
+    throw e , if e refers null then we will get NullPointerException.
+    See carefully that when we are not assigning any object to the reference variable then we will be getting NullPointerException.
+    public class p6
+    {
+        static ArithmeticException e = new ArithmaticException() ;
+        public static void main(String[] args) {
+            throw e;
+        }
+    }
+    //Exception in thread "main" java.lang.ArithmeticException
+    //       at p6.<clinit>(P6.java:6)
+
+
+
+    public class p6
+    {
+        static ArithmeticException e = new ArithmaticException() ;
+        public static void main(String[] args) {
+            throw e;
+        }
+    }
+    //Exception in thread "main" java.lang.NullPointerException
+    //       at p6.main(P6.java:24)
+
+
+Case 2:
+    After throw statement we are not allowed to write any statment directly otherwise we will get compile time
+    error saying unreachable statment.
+
+    public class p6
+    {
+        public static void main(String[] args) {
+            Sopen(10/0);
+            Sopen("Hello");
+        }
+    }
+    //this is runtime exception as compiler won't check ArithmaticException exception as it is unchecked exception
+
+
+    public class p6
+    {
+        public static void main(String[] args) {
+            throw new ArithmaticException("/ by zero);
+            Sopen("Hello");                             //unreachable statment
+        }
+    }
+    //this code will give ce as compiler sees that after throw statement Sopen() is unreachable.
+
+
+
+Case 3:
+    We can use throw keyword only for throwable types if we are trying to use for normal java objects we will get
+    compile time error saying incompatible types.
+
+    To make any java class object throwable we must have to extends RuntimeException exception class in that particular class.
+    
+
+    class p6
+    {
+        p s void main(String[] args)
+        {
+            throws new Test();
+        }
+    }
+    compile time error: incompatible types: p6 cannot be converted to Throwable throw new p6();
+    //here we are throwing simple java class object since it is not throwable thats y it is giving error
+
+
+    public class p6 extends RuntimeException
+    {
+        public static void main(String[] args)
+        {
+            throw new p6();
+        }
+    }
+    Atruntime:
+    Exception in thread "main" p6
+        at p6.main(P6.java:24)
+
+    //now it will not give any ce error and compiles fine but as we are throwing runtime exception as p6 so 
+    //at runtime it will give and exception.
+    

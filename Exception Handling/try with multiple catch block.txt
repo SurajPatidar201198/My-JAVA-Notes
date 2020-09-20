@@ -1,0 +1,99 @@
+=====================================================================================================
+try with multiple catch block
+====================================================================================================
+The way of handling an exception is varied from exception to exeption hence for every exception type it is highly
+recommended to take seperate catch block i.e try with multiple catch block is always possible and recommended 
+to use.
+
+try
+{
+    Risky code
+}
+catch(Exeption e)
+{
+    //print exception
+}
+
+//worst programming practice above
+
+
+
+try
+{
+    //Risky code
+}
+catch(ArithmaticException e)
+{
+    //perform alternative Arithmatic operation
+}
+catch(SQLException e)
+{
+    //use mysql db instead of oracle db
+}
+catch(FileNotFoundException e)
+{
+    //use local file instead of remote file
+}
+catch(Exception e)
+{
+    //default Exception-handling
+}
+
+//best programming practice above
+
+
+
+LoopHoles:
+
+1)
+    If try with multiple catch block present then the order of catch block is very important we have
+    to take child first and then parent otherwise we will get compile time error saying "Exception XXX has 
+    already been caught".
+
+    try
+    {
+        //risky code
+    }
+    catch(Exception e)
+    {
+
+    }
+    catch(ArithmaticException e)
+    {
+
+    }
+    //above code will give an error order matters example in our code if ArithmaticException occur then it will
+    //catched by Exception only and ArithmaticException will never get chance therefore it will give error.
+
+    try
+    {
+        //risky code
+    }
+    catch(ArithmaticException e)
+    {
+
+    }
+    catch(Exception e)
+    {
+
+    }
+    //above code will run fine
+
+2)
+    We can't declare two catch block for same exception otherwise we will get compile time error.
+
+    try
+    {
+        //risky code
+    }
+    catch(ArithmaticException e)
+    {
+
+    }
+    catch(ArithmaticException e)        //this will also give  ce error as we have defined same catch block above
+    {
+
+    }
+
+
+

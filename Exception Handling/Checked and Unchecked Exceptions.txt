@@ -1,0 +1,73 @@
+===========================================================================================================
+Checked Exception VS Unchecked Exception
+=====================================================================================================
+**Most Important
+
+The Exceptions which are checked by compiler for smooth execution of the program are called checked
+exeception.Example: HallTicketMissingException, PenNotWorkingExeption,FileNotFoundException etc.
+
+Remeber : mom and son examination example
+
+In our program if there is a chance of rising checked Exception then compulsory we should handle that 
+checked exeption(either by try-catch or by throws keyword) otherwise we will get compile time error.
+
+Example:
+public class p6
+{
+    public static void main(String[] args) {
+        PrintWriter pw = new PrintWriter("abc.txt");        //there might be case that this file will not be present at its location
+        pw.println("Hello");
+        System.out.println("Done");
+    }
+}
+
+//the above program will thows an exception at compile time because there may be a chance of a chance of FileNotFoundException.
+//and we havn't handled that exception
+
+
+
+
+The exceptions which are not checked by compiler whether programmer handling or not such type of exceptions are called Unchecked exceptions.
+Example:
+1)ArithmaticException
+2)BombBlastException .. etc
+
+Rember : Example of father,son and grandfather related to marriage
+
+Note:
+1)Whether it is checked or Unchecked every exception occurs at runtime only.
+2)There is no chance of occuring any exception at compile time.
+
+
+Note:
+Runtime Exception and its child classes, Error and its child classes are unchecked except this remaining are checked exception.
+
+
+---------------------------------------------------------------------------------------------
+Fully Checked VS Partially Checked
+---------------------------------------------------------------------------------------------
+
+Remeber: parent and child mall and parent and child airport example
+
+A checked is said to be fully checked if and only if all its child classes also checked.
+Example:
+IOException,InterruptedException,ServeletException etc.
+
+A checked exception is said to be Partially checked if and only if some of its child classes are
+unchecked.
+Example:
+Exception and Throwable etc.
+
+Note: The only possible Partially checked exceptions in java are Exception and Throwable.
+
+
+Describe the behaviour of following exceptions:
+1)IOException       //checked Exception,fully checked exception
+2)RuntimeException      //Unchecked Exception
+3)InterruptedException      //checked Exception , fully checked exception
+4)Error         //Unchecked Exception
+5)Throwable         //Partially checked exception
+6)ArithmaticException       //unchecked exception
+7)NullPointerException      //unchecked exception
+8)Exception         //Partially checked exception
+9)FileNotFoundException         //Fully checked exception

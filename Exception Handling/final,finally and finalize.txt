@@ -1,0 +1,49 @@
+===============================================================================================
+final
+===============================================================================================
+
+final is a modifier applicable for classes,methods and variable if the class is declared as final 
+then we can't extent that class i.e we can't create child class for that class i.e inheritance 
+is not possible for final classes.
+If a method is final then we can't override that method in child class.
+If a variable is declared as final then we can't perform reassignment for that variable.
+
+================================================================================================
+finally
+=================================================================================================
+finally is a block always associated with try catch to maintain clean up code.
+try
+{
+    //risky code
+}
+catch(Exception e)
+{
+    //handling code
+}
+finally
+{
+    //cleanup code
+}
+
+The speciality of finally block is it will be executed always whether Exception is rised or not and whether handled
+or not handled.
+
+=====================================================================================================
+finalize()
+======================================================================================================
+finalize() is a method always evoked by garbage collector just before distroying an object to perform cleanup
+activities.
+Example: suppose garbage collector is going to destroy an object then before destroying  that object it will ask 
+that object that is there is any last wish of yours then for example it will tell that i am having db connections first
+close that and then you can distroy me.
+
+Once finalize method completes immediately garbage collector destroys that object.
+
+
+Note: finally block is responsible to perform cleanup activities related to try block. i.e whatever resources we opened at the part
+of try block will be closed inside finally block.
+Whereas finalize() method is responsible to perform cleanup activities related to object i.e whatever resources associated 
+with object will be deallocated before distroying and object by using finalize method.
+
+//finally and finalize work is same i.e cleanup responsibility but there context is different.
+
