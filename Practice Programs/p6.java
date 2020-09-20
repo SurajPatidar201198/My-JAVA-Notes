@@ -1,27 +1,43 @@
+import javax.lang.model.util.ElementScanner14;
 
+//defining customized exceptions 
 
-
-public class p6 extends RuntimeException
+class TooYoungException extends RuntimeException
 {
-    static ArithmeticException e ;
+    TooYoungException(String s)
+    {
+        super(s);
+    }
+}
+class TooOldException extends RuntimeException
+{
+    TooOldException(String s)
+    {
+        super(s);
+    }
+}
+class CustomExceptionDemo
+{
+    // static int x = 10/0;
+    static
+    {
+        String s = null;
+        System.out.println(s.length());
+    }
     public static void main(String[] args) {
-        // PrintWriter pw = new PrintWriter("abc.txt");
-        // pw.println("Hello");
-        // System.out.println("Done");
-        // System.out.println("Start");
-        // try
+        // int age = Integer.parseInt(args[0]);
+        // if(age>60)
         // {
-            // System.out.println(10/0);
+        //     throw new TooYoungException("Please wait some more time you eill get best match");
         // }
-        // catch(ArithmeticException e)
+        // else if(age<18)
         // {
-        //     // System.out.println(10/2);
-        //     // e.printStackTrace();
-        //     // System.out.println(e);
-        //     System.out.println(e.getMessage());
+        //     throw new TooOldException("Your age already crossed marriage age and no chance of getting marriage");
         // }
-        // System.out.println("End");
-            throw new p6();
+        // else 
+        // {
+        //     System.out.println("You will get matched details soon by email");
+        // }
         
     }
 }

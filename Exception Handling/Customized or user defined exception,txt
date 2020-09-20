@@ -1,0 +1,55 @@
+===============================================================================================
+Customized or user defined exception
+================================================================================================
+
+Sometimes to meet programming requirments we can define our own exceptions such type of exception are called
+Customized or user defined exceptions.
+
+Example: TooYoungException
+         TooOldException
+         InSufficientFundException
+
+Example: 
+
+//defining customized exceptions 
+
+class TooYoungException extends RuntimeException
+{
+    TooYoungException(String s)
+    {
+        super(s);
+    }
+}
+class TooOldException extends RuntimeException
+{
+    TooOldException(String s)
+    {
+        super(s);
+    }
+}
+class CustomExceptionDemo
+{
+    public static void main(String[] args) {
+        int age = Integer.parseInt(args[0]);
+        if(age>60)
+        {
+            throw new TooYoungException("Please wait some more time you eill get best match");
+        }
+        else if(age<18)
+        {
+            throw new TooOldException("Your age already crossed marriage age and no chance of getting marriage");
+        }
+        else 
+        {
+            System.out.println("You will get matched details soon by email");
+        }
+    }
+}
+
+Note :
+1)Throw keyword is best suitable for user defined or customized exceptions but not for pre-defined exceptions.
+2)It is highly recommended to define customized exceptions as unchecked i.e we have to extends runtime exceptions
+but not exceptions. Because if we extends checked exception then it will give compile time exception.
+Remeber exception is also checked exception.
+
+3)super(s) is required to make  our description available to default exception handler.

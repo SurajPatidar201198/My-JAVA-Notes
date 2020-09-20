@@ -1,0 +1,114 @@
+=====================================================================================================
+Top-10 Exceptions
+=====================================================================================================
+
+Based on the person who is rising an exception all exceptions are divided into 2 types:
+1)JVM Exceptions
+2)Programmatic Exceptions
+
+---------------------------------
+JVM Exceptions
+---------------------------------
+The exceptions which are rised automatically by JVM whenever a particular event occur are called
+JVM exceptions.
+Example :
+    1)Arithmatic exceptions
+    2)NULL pointer exception ..etc 
+
+
+------------------------------------
+Programmatic Exceptions
+-------------------------------------
+The exception which are rised explicitly either by programmer or api developer to indicate that
+something got wrong are called programmatic exceptions.
+Example:
+    TooOldExceptions
+    IllegalArgumentException ...etc
+
+
+1)ArrayIndexOutOfBoundException 
+    It is the child class of runtime exception and hence it is unchecked.
+    Rised automatically by JVM whenever we are trying to access array elements with out of 
+    range index.
+    Example:
+    int [] x = new int[4];
+    Sopen(x[0]);   //0
+    Sopen(x[10]);   //re:ArrayIndexOutOfBoundException
+    Sopen(x[-10]);   //re:ArrayIndexOutOfBoundException
+
+2)NullPointerException
+    It is the child class of runtime exception and hence it is unchecked.
+    Rised automatically by JVM whenever we are trying to perform any operation on NULL.
+    Example:
+    String e=null;
+    System.out.println(e.length());
+
+3)ClassCastException
+    It is child class of runtime exception and it is unchecked.
+    Rised automatically by JVM whenever we are trying to typecast parent object to child type.
+    String s = new String("Suraj");
+    Object o = (Object)s;       //valid
+
+    Object o = new Object();
+    String s = (String)o;    //this is invalid ClassCastException
+
+    Object o = new String("suraj")
+    String s = (String)o;   //valid 
+
+4)StackOverFlowError
+    It is a child class of Error and hence it is unchecked.
+    Rised automatically by JVM whenever we are trying to perform recursive method call.
+    Example:
+    class Test 
+    {
+        p s v m1()
+        {
+            m2();
+        }
+        p s v m2()
+        {
+            m1();
+        }
+        p s void main(String[] args)
+        {
+            m1();
+        }
+    }
+
+5)NoClassDefFoundError
+    It is a child class of error and hence it is unchecked.
+    Rised automatically by JVM whenever JVM unable to find required .class file.
+    Example:
+    java Test   //if Test.class file is not available then we will get runtime exception saying NoClassDefFound Error.
+
+
+6)ExceptionInInitializerError
+    It is a child class of error and hence it is unchecked.
+    Rised automatically by JVM if any exception occurs while excecuting static variable assignment and static blocks.
+    Example: 
+
+    class CustomExceptionDemo
+    {
+        
+        static
+        {
+            String s = null;
+            System.out.println(s.length());
+        }
+        public static void main(String[] args) {
+        
+        }
+    }
+
+    class CustomExceptionDemo
+    {
+        static int x = 10/0;
+        public static void main(String[] args) {
+            
+            
+        }
+    }
+    //above both code will give ExceptionInInitializerError.
+
+
+7)IllegalArgumentException

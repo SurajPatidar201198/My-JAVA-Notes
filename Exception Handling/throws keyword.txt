@@ -1,0 +1,320 @@
+=========================================================================================================
+throws keyword
+=========================================================================================================
+
+In our program if there is a possibility of rising checked exception then compulsory we should
+handle that checked exception otherwise we will get compile time error saying "unreported exception
+XXX; must be caught or declared to be thrown".
+
+Example:
+import java.io.*;
+class Test
+{
+    p s v main(String[] args)
+    {
+        PrintWriter pw = new PrintWriter("abc.txt");
+        pw.println("Hello");
+    }
+}
+ce: unreported exception java.io.FileNotFoundException must be caught or declared to be thrown
+
+Example:
+class Test
+{
+    p s v main(String[] args)
+    {
+        Thread.sleep(1000);
+    }
+}
+ce:unreported exception java.lang.InterruptedException must be caught or declared to be thrown.
+
+We can handle this compile time error by using the following two ways :
+1)By using try catch
+    Example:
+        public class p6 
+        {
+            public static void main(String[] args) {
+                try
+                {
+                    Thread.sleep(10000);
+                }
+                catch(InterruptedException e)
+                {
+                    System.out.println("Thread sleeping");
+                }
+            }
+        }
+
+2)By using throws keyword:
+    We can use throws keyword to delicate responsiblity of exception handling to the caller(it may
+    be another method or JVM) then caller method is reponsible to handle that exception.
+    Example:
+    public class p6 
+    {
+        public static void main(String[] args) throws InterruptedException {
+        
+        Thread.sleep(10000);
+        
+        }
+    }
+
+
+Conclusion:
+1)throws keyword required only for checked exceptions and usage of throws keyword for unchecked
+exceptions there is no use or there is no impact.
+2)throws keyword is required only to convince compiler and usage of throws keyword doesn't 
+prevent abnormal termination of the program.
+
+
+---------------------------------------------------------------------
+Different levels of Deligation
+---------------------------------------------------------------------
+In the below code you will see that if we don't write throws in doMoreStuff() then compiler will
+give error and like that it will give to caller method we don't write in caller method too so we have
+to write the exception until the main method.
+
+Example: remove different throws InterruptedException and check
+
+public class p6 
+{
+    public static void main(String[] args) throws InterruptedException   {
+        
+        doStuff();
+        
+    }
+    public static void doStuff() throws InterruptedException
+    {
+        doMoreStuff();
+    }
+    public static void doMoreStuff() throws InterruptedException
+    {
+        Thread.sleep(10000);
+    }
+}
+
+//in the above program if we romove atleast 1 throws statement then the code won't compile.
+
+Example:
+In below code it will give ce because we have used throws InterruptedException in main but we
+havn't delicated that code to main method and to delicate we have to use throws InterruptedException in 
+doMoreStuff and doStuff method.
+
+public class p6 
+{
+    public static void main(String[] args) throws InterruptedException   {
+        
+        doStuff();
+        
+    }
+    public static void doStuff()
+    {
+        doMoreStuff();
+    }
+    public static void doMoreStuff()
+    {
+        Thread.sleep(10000);
+    }
+}
+ce:P6.java:16: error: unreported exception InterruptedException; must be caught or declared to be thrown
+        Thread.sleep(10000);
+
+
+
+Refer : throws Keyword.PNG
+
+
+
+Note: It is recommended to use try catch over throws keyword.
+
+
+
+
+LoopHoles:
+
+
+Case 1: We can use throws for methods and constructors but not for classes.
+    Example:
+    class Test
+    {
+        Test() throws Exception
+        {
+
+        }
+        public static void main(String[] args) throws Exception{
+            Test t = new Test();
+        }
+    }
+
+Case 2: We can use throws only for throwable type if we are trying to use for normal java classes then we will get compile time error saying incompatible types.
+
+    Example:
+    class Test 
+    {
+        Test() 
+        {
+
+        }
+        public static void main(String[] args) throws Test{
+            Test t = new Test();
+        }
+    }
+    //this will give error as incompatible type
+
+    class Test extends RuntimeException
+    {
+        Test() throws Test
+        {
+
+        }
+        public static void main(String[] args) throws Test{
+            Test t = new Test();
+        }
+    }
+    //this will run fine.
+
+Case 3:
+    (remeber that in below we have used throw not throws)
+    class Test 
+    {
+        public static void main(String[] args){
+            throw new Exception();     //it is checked exception thats y compile time error
+        }
+    }
+    //ce: error: unreported exception Exception; must be caught or declared to be thrown
+        throw new Exception();
+
+
+    class Test 
+    {
+        public static void main(String[] args){
+            throw new Error();              //it is runtime exception thats y runtime exception
+        }   
+    }
+    re:Exception in thread "main" java.lang.Error
+        at Test.main(P6.java:4)
+
+
+case 4:
+
+    Within the try block if there is no chance of raising an exception then we can't write catch block for
+    that exception otherwise we will get compile time error saying "exception XXX is never thrown in body of corresponding try statement"
+    But this rule is applicable only for fully checked exceptions.
+
+    
+    class Test 
+    {
+        public static void main(String[] args){
+            try
+            {
+                System.out.println("Hello");
+            }
+            catch(ArithmeticException e)
+            {
+                
+            }
+        }
+    }
+    //compiles fine
+
+
+    class Test 
+        {
+        public static void main(String[] args){
+            try
+            {
+                System.out.println("Hello");
+            }
+            catch(Exception e)
+            {
+
+            }
+        }
+    }
+    //compiles fine
+
+    class Test 
+    {
+        public static void main(String[] args){
+            try
+            {
+                System.out.println("Hello");
+            }
+            catch(IOException e)
+            {
+
+            }
+        }
+    }
+    //ce : exception IOException is never thrown in body of corresponding try statement
+        catch(IOException e)
+
+
+    class Test 
+    {
+        public static void main(String[] args){
+            try
+            {
+                System.out.println("Hello");
+            }
+            catch(InterruptedException e)
+            {
+
+            }
+        }
+    }
+    //ce : exception InterruptedException is never thrown in body of corresponding try statement
+        catch(InterruptedException e)
+
+
+    class Test 
+    {
+        public static void main(String[] args){
+            try
+            {
+                System.out.println("Hello");
+            }
+            catch(Error e)
+            {
+
+            }
+        }
+    }
+    //valid compiles fine  and output Hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

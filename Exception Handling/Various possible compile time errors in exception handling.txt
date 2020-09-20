@@ -1,0 +1,14 @@
+====================================================================================================
+Various possible compile time errors in exception handling
+======================================================================================================
+
+1) unreported exception XXX; must be caught or declared to be thrown
+2) exception XXX has already been caught
+3) exception XXX is never thrown in body of corresponding try statement
+4) unreachable statement
+5) incompatable types
+    found:Test
+    required:java.lang.Throwable
+6) try without catch or finally
+7) catch without try
+8) finally without try
