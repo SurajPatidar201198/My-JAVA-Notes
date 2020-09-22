@@ -112,3 +112,40 @@ Example:
 
 
 7)IllegalArgumentException
+    It is the child class of runtime exception and hence it is unchecked.
+    Rised explicitly either by programmer or by api developer to indicate that a method has been 
+    evoked with illegal argument.
+    Example:
+    The valid range of thread priority is 1 to 10 if we are trying to set the priority with
+    any other value then we will get runtime exception saying illegal argument exception.
+    class CustomExceptionDemo
+    {
+        public static void main(String[] args) {
+            Thread t = new Thread();
+            t.setPriority(5);       //THIS IS valid
+            t.setPriority(24);      //this will give error as "IllegalArgumentException"
+        }
+    }
+    re:Exception in thread "main" java.lang.IllegalArgumentException
+        at java.base/java.lang.Thread.setPriority(Thread.java:1137)
+        at CustomExceptionDemo.main(p6.java:38)
+
+8)NumberFormatException:
+    It is the direct child class of IllegalArgumentException exception which is the child class of runtime exception and
+    hence it is unchecked.
+    Rised explicitly either by programmer or api developer to indicate that we are trying to convert string to number 
+    and the string is not properly formated.
+
+    Example:
+    class CustomExceptionDemo
+    {
+        // static int x = 10/0;
+        public static void main(String[] args) {
+            int i = Integer.parseInt("10");   //this will run fine
+            System.out.println(i);
+            int j = Integer.parseInt("ten");        //this will give "NumberFormatException" exception
+            System.out.println(j);
+        }
+    }
+
+9)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
